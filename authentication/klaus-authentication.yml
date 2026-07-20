@@ -1,0 +1,42 @@
+generated: '2026-07-19'
+method: searched
+source: openapi/klaus-public-export-api-openapi-original.json, openapi/klaus-public-import-api-openapi-original.json
+docs: https://support.zendesk.com/hc/en-us/articles/7043669282714-Setting-up-a-custom-integration-in-Zendesk-QA
+summary:
+  types:
+  - apiKey
+  api_key_in:
+  - header
+  model: >-
+    A single bearer API token, issued per custom integration inside a Zendesk QA
+    account, is sent in the Authorization header as "Bearer <api_token>". There is
+    no OAuth 2.0 / OpenID Connect surface on the Klaus public APIs, and therefore no
+    scope model — access is bounded by the integration the token belongs to and by
+    the account/workspace identifiers supplied in the request.
+schemes:
+- name: ApiKeyAuth
+  type: apiKey
+  in: header
+  parameter: Authorization
+  description: Enter the token with the "Bearer " prefix
+  sources:
+  - openapi/klaus-public-export-api-openapi-original.json
+  - openapi/klaus-public-import-api-openapi-original.json
+credentials:
+- name: API token
+  where: Zendesk QA > Settings > Account > Connections > custom integration
+  docs: https://support.zendesk.com/hc/en-us/articles/7043669282714-Setting-up-a-custom-integration-in-Zendesk-QA
+- name: account ID
+  where: Zendesk QA > Settings > Account > Connections > Edit connection
+  note: Required alongside the token for import/export requests.
+- name: workspace ID
+  where: Zendesk QA > Users, bots, and workspaces > Workspaces (the numeric id in the URL)
+  note: Required for the workspace-scoped export endpoints.
+notes:
+- Export requests are made against the account's own Zendesk subdomain under the /qa
+  base path (for example https://yoursubdomain.zendesk.com/qa/api/export/reviews).
+- The Import API is additionally documented against the shared host
+  https://pub.klausapp.com/v1/tickets for non-migrated accounts.
+- 'Zendesk has removed password (basic) access for its APIs; token-based access is the
+  supported model. Reference:
+  https://support.zendesk.com/hc/en-us/articles/9941874259354-Deprecation-of-password-access-for-APIs'
