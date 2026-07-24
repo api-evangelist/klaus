@@ -1,0 +1,331 @@
+swagger: '2.0'
+info:
+  title: Public Export PubImportApi API
+  description: 'Export data from Zendesk QA.
+
+
+    ### Rate Limits:
+
+
+    - API request limit: **1,500 requests per minute per IP**'
+  version: '1.0'
+host: yoursubdomain.zendesk.com
+basePath: /qa
+consumes:
+- application/json
+produces:
+- application/json
+security:
+- ApiKeyAuth: []
+tags:
+- name: PubImportApi
+paths:
+  /api/import/tickets:
+    delete:
+      operationId: PubImportApi_DeleteImportedTicket
+      responses:
+        '200':
+          description: A successful response.
+          schema:
+            type: object
+            properties: {}
+        default:
+          description: An unexpected error response.
+          schema:
+            $ref: '#/definitions/rpcStatus'
+      parameters:
+      - name: ticketExternalIds
+        in: query
+        required: false
+        type: array
+        items:
+          type: string
+        collectionFormat: multi
+      tags:
+      - PubImportApi
+    post:
+      operationId: PubImportApi_ImportTickets
+      responses:
+        '200':
+          description: A successful response.
+          schema:
+            type: object
+            properties: {}
+        default:
+          description: An unexpected error response.
+          schema:
+            $ref: '#/definitions/rpcStatus'
+      parameters:
+      - name: body
+        in: body
+        required: true
+        schema:
+          $ref: '#/definitions/protoPubTicketImportRequest'
+      tags:
+      - PubImportApi
+  /api/import/tickets/{ticketExternalId}:
+    get:
+      operationId: PubImportApi_GetImportedTicket
+      responses:
+        '200':
+          description: A successful response.
+          schema:
+            $ref: '#/definitions/protoPubImportedTicket'
+        default:
+          description: An unexpected error response.
+          schema:
+            $ref: '#/definitions/rpcStatus'
+      parameters:
+      - name: ticketExternalId
+        in: path
+        required: true
+        type: string
+      tags:
+      - PubImportApi
+  /api/import/users:
+    post:
+      operationId: PubImportApi_ImportUsers
+      responses:
+        '200':
+          description: A successful response.
+          schema:
+            type: object
+            properties: {}
+        default:
+          description: An unexpected error response.
+          schema:
+            $ref: '#/definitions/rpcStatus'
+      parameters:
+      - name: body
+        in: body
+        required: true
+        schema:
+          $ref: '#/definitions/protoPubUserImportRequest'
+      tags:
+      - PubImportApi
+definitions:
+  protoPubUserImportRequest:
+    type: object
+    properties:
+      data:
+        type: array
+        items:
+          type: object
+          $ref: '#/definitions/protoPubUserImport'
+  protoPubCommentImport:
+    type: object
+    properties:
+      id:
+        type: string
+      authorName:
+        type: string
+      authorEmail:
+        type: string
+      authorIsNotClient:
+        type: boolean
+      public:
+        type: boolean
+      comment:
+        type: string
+      created:
+        type: string
+      updated:
+        type: string
+      recordingUrl:
+        type: string
+      attachmentUrl:
+        type: string
+      attachmentName:
+        type: string
+      callDuration:
+        type: string
+        format: int64
+      callDirection:
+        type: string
+      isBucketKey:
+        type: boolean
+  protoPubUserImport:
+    type: object
+    properties:
+      userEmail:
+        type: string
+      userName:
+        type: string
+  protoPubImportedTicket:
+    type: object
+    properties:
+      externalId:
+        type: string
+      internalId:
+        type: string
+        format: int64
+      assigneeEmail:
+        type: string
+      assigneeName:
+        type: string
+      description:
+        type: string
+      subject:
+        type: string
+      created:
+        type: string
+      updated:
+        type: string
+      imported:
+        type: string
+      status:
+        type: string
+      customerName:
+        type: string
+      customerEmail:
+        type: string
+      comments:
+        type: array
+        items:
+          type: object
+          $ref: '#/definitions/protoPubImportedComment'
+      ticketFields:
+        type: array
+        items:
+          type: object
+          $ref: '#/definitions/protoPubTicketField'
+      url:
+        type: string
+      tags:
+        type: array
+        items:
+          type: string
+  protobufAny:
+    type: object
+    properties:
+      '@type':
+        type: string
+    additionalProperties: {}
+  protoPubTicketImport:
+    type: object
+    properties:
+      id:
+        type: string
+      assigneeEmail:
+        type: string
+      assigneeName:
+        type: string
+      description:
+        type: string
+      subject:
+        type: string
+      created:
+        type: string
+      updated:
+        type: string
+      status:
+        type: string
+      customerName:
+        type: string
+      customerEmail:
+        type: string
+      comments:
+        type: array
+        items:
+          type: object
+          $ref: '#/definitions/protoPubCommentImport'
+      ticketFields:
+        type: array
+        items:
+          type: object
+          $ref: '#/definitions/protoPubTicketField'
+      channel:
+        type: string
+      type:
+        type: string
+      satisfactionScore:
+        type: string
+      satisfactionComment:
+        type: string
+      closed:
+        type: string
+      url:
+        type: string
+      tags:
+        type: array
+        items:
+          type: string
+  protoPubImportedComment:
+    type: object
+    properties:
+      externalId:
+        type: string
+      internalId:
+        type: string
+        format: int64
+      authorName:
+        type: string
+      authorEmail:
+        type: string
+      public:
+        type: boolean
+      comment:
+        type: string
+      created:
+        type: string
+      updated:
+        type: string
+      imported:
+        type: string
+      recordingUrl:
+        type: string
+      attachmentUrl:
+        type: string
+      attachmentName:
+        type: string
+      callDuration:
+        type: string
+        format: int64
+  protoPubTicketImportRequest:
+    type: object
+    properties:
+      data:
+        type: array
+        items:
+          type: object
+          $ref: '#/definitions/protoPubTicketImport'
+  rpcStatus:
+    type: object
+    properties:
+      code:
+        type: integer
+        format: int32
+      message:
+        type: string
+      details:
+        type: array
+        items:
+          type: object
+          $ref: '#/definitions/protobufAny'
+  protoPubTicketFieldValue:
+    type: object
+    properties:
+      label:
+        type: string
+      value:
+        type: string
+  protoPubTicketField:
+    type: object
+    properties:
+      id:
+        type: string
+      label:
+        type: string
+      updated:
+        type: string
+      values:
+        type: array
+        items:
+          type: object
+          $ref: '#/definitions/protoPubTicketFieldValue'
+securityDefinitions:
+  ApiKeyAuth:
+    type: apiKey
+    description: Enter the token with the "Bearer " prefix
+    name: Authorization
+    in: header
