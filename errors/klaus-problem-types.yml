@@ -1,0 +1,58 @@
+generated: '2026-07-19'
+method: derived
+source: >-
+  openapi/klaus-public-export-api-openapi-original.json,
+  openapi/klaus-public-import-api-openapi-original.json, plus a live probe of
+  https://api.klausapp.com/
+format: grpc-status
+rfc9457: false
+summary: >-
+  Neither published specification enumerates individual 4xx/5xx responses. Every
+  operation in both the Public Export API and the Public Import API declares exactly
+  two responses: a 200 with the success payload, and a catch-all `default` described
+  as "An unexpected error response" carrying the google.rpc.Status envelope. This is
+  the standard grpc-gateway shape. No error-code registry is published for the Klaus
+  public APIs.
+envelopes:
+- name: google.rpc.Status
+  schema: googlerpcStatus (export API) / rpcStatus (import API)
+  media_type: application/json
+  fields:
+  - {name: code, type: integer(int32), description: gRPC status code — not the HTTP status code}
+  - {name: message, type: string, description: Developer-facing error message}
+  - {name: details, type: array<google.protobuf.Any>, description: Optional typed error details}
+  applies_to: every operation in both public APIs (the `default` response)
+- name: application error envelope
+  schema: not published
+  observed_on: 'GET https://api.klausapp.com/ (HTTP 500), probed 2026-07-19'
+  fields:
+  - {name: ref, type: string, description: UUIDv7 correlation id to quote in support requests}
+  - {name: errorCode, type: string, description: 'machine-readable code, e.g. technical_exception'}
+  - {name: error, type: object, description: map of locale to human-readable message}
+  - {name: dateTime, type: string, description: ISO 8601 timestamp}
+  note: >-
+    This envelope belongs to the Zendesk QA application host, not to the documented
+    public APIs; recorded because it is the shape callers actually see from
+    api.klausapp.com.
+problems:
+- status: default
+  type: null
+  title: An unexpected error response
+  schema: googlerpcStatus
+  source_operation: openapi/klaus-public-export-api-openapi-original.json#PublicExportApi_*
+- status: default
+  type: null
+  title: An unexpected error response
+  schema: rpcStatus
+  source_operation: openapi/klaus-public-import-api-openapi-original.json#PubImportApi_*
+- status: 401
+  type: null
+  title: Unauthorized
+  evidence: 'live probe — every path on https://api.klausapp.com/ returns 401 without a bearer token'
+  source_operation: null
+  note: Not declared in either specification; observed behaviour.
+gaps:
+- No per-status (400/401/403/404/409/422/429) responses are declared in either spec.
+- No documented rate-limit (429) response despite documented request limits — see
+  rate-limits/klaus-rate-limits.yml.
+- No published error-code reference page for the Klaus/Zendesk QA public APIs.

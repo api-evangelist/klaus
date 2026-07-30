@@ -1,0 +1,53 @@
+overlay: 1.0.0
+info:
+  title: API Evangelist enhancements for the Klaus Public Export API
+  version: 1.0.0
+extends: openapi/klaus-public-export-api-openapi-original.json
+x-generated: '2026-07-19'
+x-method: generated
+x-source: >-
+  https://pub.klausapp.com/?urls.primaryName=Public+Export+API plus the artifacts in this
+  repository. The harvested specification is never mutated; these are our additions.
+actions:
+- target: $.info
+  update:
+    x-apievangelist-provider: klaus
+    x-apievangelist-artifacts:
+      authentication: authentication/klaus-authentication.yml
+      conventions: conventions/klaus-conventions.yml
+      errors: errors/klaus-problem-types.yml
+      lifecycle: lifecycle/klaus-lifecycle.yml
+      rate_limits: rate-limits/klaus-rate-limits.yml
+      data_model: data-model/klaus-data-model.yml
+      conformance: conformance/klaus-conformance.yml
+    x-product-name: Zendesk QA (formerly Klaus)
+    x-documentation: https://support.zendesk.com/hc/en-us/articles/7043724806810-Exporting-data-from-Zendesk-QA
+    x-rate-limits:
+      requests_per_minute: 1500
+      scope: per IP
+- target: $
+  update:
+    x-base-url-note: >-
+      Requests are made against the account's own Zendesk subdomain under the /qa base path,
+      e.g. https://yoursubdomain.zendesk.com/qa/api/export/reviews.
+    x-pagination:
+      style: page-number
+      params: [page, pageSize]
+      cursor_param: cursor
+      response_object: pagination
+- target: $.securityDefinitions.ApiKeyAuth
+  update:
+    x-credential-source: 'Zendesk QA > Settings > Account > Connections > custom integration'
+    x-token-format: 'Authorization: Bearer <api_token>'
+- target: $.paths['/api/export/reviews'].get
+  update:
+    x-marquee: true
+    x-notes: >-
+      Account-wide review export. Use fromDate/toDate to window the pull and page/pageSize
+      to walk results; conversations[].externalId joins back to the imported help-desk ticket.
+- target: $.paths['/api/export/conversations/search'].post
+  update:
+    x-marquee: true
+    x-notes: >-
+      POST search by endUserEmail; the response externalLink is a deep link to the original
+      help-desk conversation. Scorecard tags and comment hashtags are additional filters.

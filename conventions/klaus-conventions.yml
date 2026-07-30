@@ -1,0 +1,119 @@
+generated: '2026-07-19'
+method: searched
+source: >-
+  openapi/klaus-public-export-api-openapi-original.json,
+  openapi/klaus-public-import-api-openapi-original.json, plus the Zendesk QA
+  integration documentation
+docs: https://support.zendesk.com/hc/en-us/articles/7043669282714-Setting-up-a-custom-integration-in-Zendesk-QA
+transport:
+  protocol: REST over HTTPS
+  spec_format: Swagger 2.0 (OpenAPI 2.0)
+  media_type: application/json
+  implementation: >-
+    Both public APIs are grpc-gateway generated (schema names are prefixed proto*/
+    protobuf*, errors use the google.rpc.Status envelope), which explains the
+    RPC-style operationIds of the form <Service>_<Method>.
+authentication:
+  style: bearer API token in the Authorization header
+  scheme: ApiKeyAuth (apiKey, in header, name Authorization)
+  detail: authentication/klaus-authentication.yml
+base_paths:
+- api: Klaus Public Export API
+  host: https://<subdomain>.zendesk.com
+  base_path: /qa
+  example: https://yoursubdomain.zendesk.com/qa/api/export/reviews
+- api: Klaus Public Import API
+  host: https://<subdomain>.zendesk.com
+  base_path: /qa
+  alternate_host: https://pub.klausapp.com/v1
+  note: >-
+    The import documentation for non-migrated accounts publishes
+    POST https://pub.klausapp.com/v1/tickets; the specification declares the
+    tenant-subdomain form /qa/api/import/tickets.
+idempotency:
+  supported: true
+  style: client-supplied natural key (upsert by external id)
+  key_field: data[].id (ticket), data[].comments[].id (comment)
+  applies_to:
+  - PubImportApi_ImportTickets
+  - PubImportApi_ImportUsers
+  retention: for the lifetime of the imported record
+  semantics: >-
+    The import payload carries a caller-owned unique id — "preferably the same as in
+    your system". Re-sending the same id updates the existing conversation or comment
+    rather than creating a duplicate, so an import request can safely be retried. The
+    same id is the handle for GET /api/import/tickets/{ticketExternalId} and
+    DELETE /api/import/tickets.
+  header_based: false
+  note: >-
+    There is no Idempotency-Key request header; idempotency is expressed through the
+    caller-supplied record id, and is documented rather than header-negotiated.
+  docs: https://support.zendesk.com/hc/en-us/articles/7043724785178-Importing-conversations-via-API-non-migrated-accounts
+pagination:
+  style: page-number with an optional cursor on selected exports
+  params:
+  - {name: page, in: query, type: integer}
+  - {name: pageSize, in: query, type: integer}
+  - {name: cursor, in: query, type: string, note: used by the AutoQA export endpoints}
+  response_fields:
+  - pagination.page
+  - pagination.pageSize
+  - pagination.total
+  source: definitions.protoPagination
+filtering:
+  time_window:
+  - {name: fromDate, in: query, note: required on several export endpoints}
+  - {name: toDate, in: query}
+  scoping:
+  - {name: workspace, in: path, note: workspace-scoped export endpoints}
+  - {name: workspaceId, in: query}
+  - {name: connectionId, in: query}
+  - {name: ratingCategoryId, in: query}
+  - {name: rootCauseCode, in: query}
+  - {name: revieweeExternalId, in: query}
+  - {name: autoqaCategoryType, in: query}
+  - {name: latestOnly, in: query, type: boolean}
+  search:
+    operation: PublicExportApi_ConversationSearch
+    method: POST
+    body_field: endUserEmail
+    note: >-
+      Conversation lookup by end-user email is a POST search rather than a GET filter;
+      scorecard tags and comment hashtags are additional documented filters.
+error_envelope:
+  format: google.rpc.Status (grpc-gateway)
+  schema: googlerpcStatus / rpcStatus
+  fields:
+  - {name: code, type: integer, note: gRPC status code, not the HTTP status}
+  - {name: message, type: string}
+  - {name: details, type: array of google.protobuf.Any}
+  declared_responses: ['200', default]
+  observed_gateway_envelope:
+    example_source: 'live GET https://api.klausapp.com/ (HTTP 500)'
+    fields: [ref, errorCode, error, dateTime]
+    note: >-
+      The tenant application host api.klausapp.com returns a different, richer error
+      envelope (correlation ref + errorCode + localized error map) than the public
+      grpc-gateway APIs.
+  detail: errors/klaus-problem-types.yml
+  rfc9457: false
+versioning:
+  scheme: path segment on the shared import host (/v1); unversioned under the tenant /qa base path
+  spec_version: '1.0 (info.version of both published specifications)'
+  detail: lifecycle/klaus-lifecycle.yml
+rate_limiting:
+  documented: true
+  detail: rate-limits/klaus-rate-limits.yml
+  headers: not documented
+request_tracing:
+  request_id_header: not documented
+  note: The application error envelope carries a `ref` correlation id (UUIDv7).
+data_formats:
+  timestamps: 'yyyy-mm-ddThh:mm:ss (import payload); RFC 3339 with offset accepted on export date filters'
+  content: comments accept Markdown or HTML in the `comment` field
+cross_links:
+  authentication: authentication/klaus-authentication.yml
+  errors: errors/klaus-problem-types.yml
+  lifecycle: lifecycle/klaus-lifecycle.yml
+  rate_limits: rate-limits/klaus-rate-limits.yml
+  data_model: data-model/klaus-data-model.yml

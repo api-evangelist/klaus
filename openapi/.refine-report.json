@@ -1,0 +1,16 @@
+{
+  "provider": "klaus",
+  "sources": [
+    "klaus-pubimportapi-api-openapi.yml",
+    "klaus-publicexportapi-api-openapi.yml"
+  ],
+  "outputs": [
+    "klaus-pubimportapi-api-openapi.yml",
+    "klaus-publicexportapi-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}

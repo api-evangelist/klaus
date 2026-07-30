@@ -1,0 +1,53 @@
+overlay: 1.0.0
+info:
+  title: API Evangelist enhancements for the Klaus Public Import API
+  version: 1.0.0
+extends: openapi/klaus-public-import-api-openapi-original.json
+x-generated: '2026-07-19'
+x-method: generated
+x-source: >-
+  https://pub.klausapp.com/?urls.primaryName=Public%20Import%20API plus the artifacts in
+  this repository. The harvested specification is never mutated; these are our additions.
+actions:
+- target: $.info
+  update:
+    x-apievangelist-provider: klaus
+    x-apievangelist-artifacts:
+      authentication: authentication/klaus-authentication.yml
+      conventions: conventions/klaus-conventions.yml
+      errors: errors/klaus-problem-types.yml
+      rate_limits: rate-limits/klaus-rate-limits.yml
+      data_model: data-model/klaus-data-model.yml
+    x-product-name: Zendesk QA (formerly Klaus)
+    x-documentation: https://support.zendesk.com/hc/en-us/articles/7043724785178-Importing-conversations-via-API-non-migrated-accounts
+    x-rate-limits:
+      requests_per_minute: 1500
+      scope: per IP
+      comments_per_ticket: 500
+      tickets_per_import: 10000
+- target: $
+  update:
+    x-alternate-base-url: https://pub.klausapp.com/v1
+    x-idempotency:
+      supported: true
+      style: client-supplied natural key (upsert by external id)
+      key_field: data[].id
+      header_based: false
+      note: >-
+        Re-sending a payload with the same id updates the existing conversation or comment
+        instead of creating a duplicate, so imports are safe to retry.
+- target: $.securityDefinitions.ApiKeyAuth
+  update:
+    x-credential-source: 'Zendesk QA > Settings > Account > Connections > custom integration'
+    x-token-format: 'Authorization: Bearer <api_token>'
+- target: $.paths['/api/import/tickets'].post
+  update:
+    x-marquee: true
+    x-notes: >-
+      Bulk conversation import. assigneeEmail (or a comment authorEmail) must match an
+      internal Zendesk QA user for the conversation to be reviewable. created/updated use
+      the yyyy-mm-ddThh:mm:ss format; comment bodies accept Markdown or HTML.
+- target: $.paths['/api/import/users'].post
+  update:
+    x-marquee: true
+    x-notes: Bulk user import; email is the identity key that binds imported conversations to users.

@@ -1,0 +1,191 @@
+generated: '2026-07-19'
+method: derived
+source: >-
+  openapi/klaus-public-export-api-openapi-original.json,
+  openapi/klaus-public-import-api-openapi-original.json
+docs: https://pub.klausapp.com/
+note: >-
+  Entity graph derived from the $ref links and id-reference fields in the two published
+  Swagger 2.0 definitions. Schema names carry the grpc-gateway proto* prefix; the entity
+  names below are the domain names those schemas represent.
+entities:
+- name: Account
+  schema: null
+  identifiers: [accountId]
+  note: >-
+    The tenant. Not modelled as a standalone schema — it appears as an accountId field
+    on export rows and as the `account` field on the conversation-search request.
+  relationships:
+  - {type: has_many, entity: Workspace}
+  - {type: has_many, entity: Conversation}
+- name: Workspace
+  schema: protoWorkspaceIdName
+  identifiers: [id]
+  fields: [id, name]
+  note: The review unit; most export endpoints are workspace-scoped via a path parameter.
+  relationships:
+  - {type: has_many, entity: Scorecard, via: workspace scorecards export}
+  - {type: has_many, entity: Review}
+  - {type: has_many, entity: User}
+- name: Conversation
+  schema: protoExportAPIConversation
+  identifiers: [externalId]
+  fields: [externalId, url, externalUrl, lastUpdated, workspaceId, sourceType, createdAt, workspaceName]
+  note: >-
+    The imported help-desk ticket. `externalId` is the caller-supplied id from the
+    Import API and the join key across every export.
+  relationships:
+  - {type: has_many, entity: Review, via: reviews}
+  - {type: has_many, entity: Comment, via: comments}
+  - {type: has_many, entity: ExternalField, via: externalFields}
+  - {type: belongs_to, entity: Workspace, via: workspaceId}
+- name: Review
+  schema: protoExportAPIReview
+  identifiers: [id]
+  fields: [id, score, comment, created, updated, received, reviewTime]
+  relationships:
+  - {type: has_one, entity: User, via: reviewer}
+  - {type: has_one, entity: User, via: reviewee}
+  - {type: has_many, entity: Rating, via: ratings}
+  - {type: has_many, entity: Comment, via: thread}
+  - {type: has_many, entity: CommentTag, via: tags}
+  - {type: has_one, entity: Scorecard, via: scorecard}
+  - {type: has_many, entity: TimeTrackingPeriod, via: timeTrackingPeriods}
+- name: Rating
+  schema: protoReviewsRating
+  fields: [categoryId, categoryName, score, weight, critical, cause, causes, groupId, groupName]
+  relationships:
+  - {type: belongs_to, entity: Review}
+- name: Comment
+  schema: protoExportAPIComment
+  identifiers: [id]
+  fields: [id, comment, created, updated]
+  relationships:
+  - {type: has_one, entity: User, via: owner}
+  - {type: has_many, entity: Comment, via: thread, note: self-referencing thread}
+  - {type: has_many, entity: CommentTag, via: tags}
+- name: CommentTag
+  schema: protoExportAPICommentTag
+  fields: [tag]
+  relationships:
+  - {type: has_one, entity: User, via: user}
+- name: User
+  schema: protoReviewsUser / protoExportAPIUser / protoUserData
+  identifiers: [id, email]
+  fields: [id, name, email, avatar]
+  note: Email is the identity key that binds imported conversations to Zendesk QA users.
+  relationships:
+  - {type: has_many, entity: Group, via: groups}
+- name: Group
+  schema: protoReviewsGroup
+  fields: [id, name]
+- name: Scorecard
+  schema: protoScorecard / AdvancedScorecardWorkspaceScorecard
+  identifiers: [id]
+  fields: [id, name, createdAt, updatedAt]
+  relationships:
+  - {type: has_many, entity: RatingCategory, via: categories}
+  - {type: has_many, entity: RatingCategoryGroup, via: groups}
+  - {type: belongs_to, entity: Workspace}
+- name: RatingCategory
+  schema: AdvancedScorecardScorecardRatingCategory
+  relationships:
+  - {type: has_many, entity: RootCause}
+- name: RootCause
+  schema: AdvancedScorecardRootCause / AdvancedScorecardMultiTierRootCause
+  note: Multi-tier root causes are exposed as AdvancedScorecardRootCauseTierNode trees.
+- name: Dispute
+  schema: protoExportAPIDispute
+  identifiers: [disputeId]
+  fields: [account, workspace, conversationId, connectionId, reviewId, type, status, createdAt, resolutionTime]
+  relationships:
+  - {type: belongs_to, entity: Review, via: reviewId}
+  - {type: belongs_to, entity: Conversation, via: conversationId}
+  - {type: has_one, entity: User, via: createdBy}
+  - {type: has_one, entity: User, via: assignee}
+  - {type: has_one, entity: User, via: rejectedBy}
+  - {type: has_many, entity: DisputeCategory, via: categories}
+  - {type: has_one, entity: DisputeComment, via: comment}
+- name: DisputeCategory
+  schema: protoExportAPIDisputeCategory
+  fields: [id, expectedRating, rootCause]
+- name: DisputeComment
+  schema: protoExportAPIDisputeComment
+  relationships:
+  - {type: has_one, entity: User, via: owner}
+  - {type: has_many, entity: DisputeComment, via: thread}
+- name: CalibrationSession
+  schema: protoExportAPICalibrationSession
+  identifiers: [id]
+  fields: [id, title, createdBy, createdAt, dueAt, updatedAt]
+  relationships:
+  - {type: has_many, entity: CalibrationConversation, via: conversations}
+- name: CalibrationConversation
+  schema: protoExportAPICalibrationConversation
+  relationships:
+  - {type: has_many, entity: CalibrationReview, via: reviews}
+  - {type: belongs_to, entity: Conversation, via: externalId}
+- name: CalibrationReview
+  schema: protoExportAPICalibrationReview
+  relationships:
+  - {type: has_one, entity: Scorecard, via: scorecard}
+  - {type: has_many, entity: Rating, via: ratings}
+  - {type: has_many, entity: CalibrationComment, via: thread}
+- name: AutoQAReview
+  schema: protoAutoQAReviewRow
+  identifiers: [autoqaReviewId]
+  fields: [accountId, workspaceId, connectionId, externalTicketId, conversationCreatedAt, isBot, revieweeExternalId, revieweeEmail]
+  relationships:
+  - {type: belongs_to, entity: Conversation, via: externalTicketId}
+  - {type: has_many, entity: AutoQARating, via: autoqaReviewId}
+- name: AutoQARating
+  schema: protoAutoQARatingRow
+  identifiers: [autoqaRatingId]
+  relationships:
+  - {type: belongs_to, entity: AutoQAReview, via: autoqaReviewId}
+- name: CSAT
+  schema: protoTicketCSAT
+  fields: [externalTicketId, conversationUrl, csatScore, csatRawScore, csatComment, csatReason, conversationChannel, agentEmail, customerEmail]
+  relationships:
+  - {type: belongs_to, entity: Conversation, via: externalTicketId}
+- name: Quiz
+  schema: protoQuizWithStatistics / protoQuizListItem
+  identifiers: [id]
+  fields: [id, name, description, status, publishedDate, responseCount, averageScorePercentage]
+  relationships:
+  - {type: has_many, entity: QuizField, via: fields}
+  - {type: has_many, entity: QuizResponse}
+- name: QuizField
+  schema: protoQuizFieldWithStatistics
+  relationships:
+  - {type: has_many, entity: QuizFieldOption, via: options}
+- name: QuizFieldOption
+  schema: protoQuizFieldOptionWithStatistics
+- name: QuizResponse
+  schema: protoQuizAndResponse / protoQuizResponseItem
+  identifiers: [responseId]
+  relationships:
+  - {type: belongs_to, entity: Quiz, via: quizId}
+  - {type: has_many, entity: QuizResponseField, via: fields}
+- name: ImportedTicket
+  schema: protoPubTicketImport
+  source: openapi/klaus-public-import-api-openapi-original.json
+  identifiers: [id]
+  fields: [id, subject, description, created, updated, assigneeEmail, assigneeName]
+  relationships:
+  - {type: has_many, entity: ImportedComment, via: comments}
+  - {type: has_many, entity: TicketField, via: ticketFields}
+- name: ImportedComment
+  schema: protoPubCommentImport
+  fields: [authorEmail, authorName, authorIsNotClient, comment]
+- name: TicketField
+  schema: protoPubTicketField
+  fields: [id, label, values]
+- name: ImportedUser
+  schema: protoPubUserImport
+  source: openapi/klaus-public-import-api-openapi-original.json
+- name: Pagination
+  schema: protoPagination
+  fields: [page, pageSize, total]
+  note: Envelope object attached to every paged export response; see conventions/.
+render: null

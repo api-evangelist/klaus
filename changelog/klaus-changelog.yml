@@ -1,0 +1,42 @@
+generated: '2026-07-19'
+method: searched
+source: https://support.zendesk.com/hc/en-us/ (Zendesk announcements + release notes, filtered to Zendesk QA)
+docs: https://support.zendesk.com/hc/en-us/sections/6999625340058-Using-Zendesk-QA
+scheme:
+  style: dated product announcements plus a rolling "Release notes through <date>" series
+  cadence: weekly release notes; announcements as shipped
+  api_versioned_changelog: false
+  note: >-
+    There is no API-specific changelog for the Klaus public Import/Export APIs. Product
+    changes that affect the exported data model are announced in the Zendesk help center.
+current_version: '1.0 (info.version of both published specifications)'
+window: '2025-08 through 2026-07 (recent window only; the live help center is the source of truth)'
+entries:
+- date: '2026-07-01'
+  title: Announcing multiple tiered root causes in Zendesk QA
+  kind: addition
+  url: https://support.zendesk.com/hc/en-us/articles/10963767936666-Announcing-multiple-tiered-root-causes-in-Zendesk-QA
+  api_impact: >-
+    Root causes are exposed in the export data model (AdvancedScorecardMultiTierRootCause,
+    AdvancedScorecardRootCauseTierNode, rating.causes).
+- date: '2026-06-05'
+  title: Announcing the new Coaching dashboard in Zendesk QA
+  kind: addition
+  url: https://support.zendesk.com/hc/en-us/articles/10869108786458-Announcing-the-new-Coaching-dashboard-in-Zendesk-QA
+- date: '2026-04-14'
+  title: Announcing Group sync between Zendesk and Zendesk QA
+  kind: addition
+  url: https://support.zendesk.com/hc/en-us/articles/10547258131098-Announcing-Group-sync-between-Zendesk-and-Zendesk-QA
+  api_impact: Groups appear on exported users (protoReviewsUser.groups / protoReviewsGroup).
+- date: '2025-12-11'
+  title: Announcing the removal of Klaus surveys and the Zendesk QA conversations Insights view
+  kind: breaking
+  url: https://support.zendesk.com/hc/en-us/articles/10049464191258-Announcing-the-removal-of-Klaus-surveys-and-the-Zendesk-QA-conversations-Insights-view
+- date: '2025-08-22'
+  title: Announcing the migration of Zendesk QA dashboards to a new platform
+  kind: change
+  url: https://support.zendesk.com/hc/en-us/articles/9627121583258-Announcing-the-migration-of-Zendesk-QA-dashboards-to-a-new-platform
+release_notes_series:
+  title: Release notes through <date>
+  example: https://support.zendesk.com/hc/en-us/articles/10510545646618-Release-notes-through-2026-04-03
+  note: Zendesk-wide weekly release notes; Zendesk QA items appear under their own heading.

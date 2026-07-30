@@ -1,0 +1,42 @@
+generated: '2026-07-19'
+method: searched
+source: live probes of the klausapp.com and zendesk.com hosts
+result: none
+note: >-
+  No /.well-known/ discovery document was served by any Klaus host. www.klausapp.com
+  and www.zendesk.com return 403 to non-browser clients (bot protection), api.klausapp.com
+  requires authentication and answers 401 for every path, and pub.klausapp.com (the
+  Swagger UI host for the public specs) returns 404. Recorded as verified absence.
+hosts:
+- host: https://pub.klausapp.com
+  documents:
+  - {path: /.well-known/security.txt, status: 404}
+  - {path: /.well-known/openid-configuration, status: 404}
+  - {path: /.well-known/oauth-authorization-server, status: 404}
+  - {path: /.well-known/api-catalog, status: 404}
+  - {path: /.well-known/ai-plugin.json, status: 404}
+  - {path: /llms.txt, status: 404}
+- host: https://api.klausapp.com
+  documents:
+  - {path: /.well-known/security.txt, status: 401}
+  - {path: /.well-known/openid-configuration, status: 401}
+  - {path: /.well-known/oauth-authorization-server, status: 401}
+  - {path: /.well-known/api-catalog, status: 401}
+  - {path: /.well-known/ai-plugin.json, status: 401}
+  - {path: /llms.txt, status: 401}
+- host: https://www.klausapp.com
+  documents:
+  - {path: /.well-known/security.txt, status: 403}
+  - {path: /.well-known/openid-configuration, status: 403}
+  - {path: /.well-known/oauth-authorization-server, status: 403}
+  - {path: /.well-known/api-catalog, status: 403}
+  - {path: /.well-known/ai-plugin.json, status: 403}
+  - {path: /llms.txt, status: 403}
+- host: https://www.zendesk.com
+  documents:
+  - {path: /.well-known/security.txt, status: 403}
+  - {path: /.well-known/openid-configuration, status: 403}
+  - {path: /.well-known/oauth-authorization-server, status: 403}
+  - {path: /.well-known/api-catalog, status: 403}
+  - {path: /.well-known/ai-plugin.json, status: 403}
+  - {path: /llms.txt, status: 403}

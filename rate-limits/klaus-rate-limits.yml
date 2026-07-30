@@ -1,0 +1,38 @@
+generated: '2026-07-19'
+method: searched
+source: >-
+  info.description of openapi/klaus-public-export-api-openapi-original.json and
+  openapi/klaus-public-import-api-openapi-original.json, published at
+  https://pub.klausapp.com/
+docs: https://pub.klausapp.com/
+rate_limits:
+- api: Klaus Public Export API
+  name: Request limit
+  limit_count: 1500
+  interval: minute
+  scope: per IP
+  source: openapi/klaus-public-export-api-openapi-original.json
+- api: Klaus Public Import API
+  name: Request limit
+  limit_count: 1500
+  interval: minute
+  scope: per IP
+  source: openapi/klaus-public-import-api-openapi-original.json
+- api: Klaus Public Import API
+  name: Comment import limit
+  limit_count: 500
+  interval: per ticket
+  scope: payload
+  source: openapi/klaus-public-import-api-openapi-original.json
+- api: Klaus Public Import API
+  name: Ticket import limit
+  limit_count: 10000
+  interval: per import request
+  scope: payload
+  source: openapi/klaus-public-import-api-openapi-original.json
+signalling:
+  headers_documented: false
+  note: >-
+    The published specifications state the numeric limits but do not document
+    RateLimit-* / Retry-After response headers or a dedicated 429 response shape;
+    both specs declare only a 200 response and a catch-all default error.

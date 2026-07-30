@@ -1,0 +1,52 @@
+generated: '2026-07-19'
+method: generated
+source: >-
+  Grounded in the operationIds published in
+  openapi/klaus-public-export-api-openapi-original.json and
+  openapi/klaus-public-import-api-openapi-original.json, plus the conventions, errors and
+  rate-limit artifacts in this repository. No provider-published Agent Skills or AGENTS.md
+  were found for Klaus / Zendesk QA.
+skills:
+- file: klaus-import-conversations.md
+  name: Import conversations and users into Zendesk QA
+  api: openapi/klaus-public-import-api-openapi-original.json
+  operations:
+  - PubImportApi_ImportUsers
+  - PubImportApi_ImportTickets
+  - PubImportApi_GetImportedTicket
+  - PubImportApi_DeleteImportedTicket
+- file: klaus-export-reviews.md
+  name: Export Zendesk QA reviews for external analysis
+  api: openapi/klaus-public-export-api-openapi-original.json
+  operations:
+  - PublicExportApi_Workspaces
+  - PublicExportApi_WorkspaceScorecards
+  - PublicExportApi_WorkspaceUsers
+  - PublicExportApi_Users
+  - PublicExportApi_Reviews
+  - PublicExportApi_AccountReviews
+- file: klaus-investigate-customer-conversations.md
+  name: Investigate a customer's conversations and their review history
+  api: openapi/klaus-public-export-api-openapi-original.json
+  operations:
+  - PublicExportApi_ConversationSearch
+  - PublicExportApi_Reviews
+  - PublicExportApi_Disputes
+  - PublicExportApi_CalibrationSessions
+- file: klaus-export-autoqa-and-csat.md
+  name: Export AutoQA ratings and CSAT from Zendesk QA
+  api: openapi/klaus-public-export-api-openapi-original.json
+  operations:
+  - PublicExportApi_AutoQAReviews
+  - PublicExportApi_AutoQARatings
+  - PublicExportApi_CSATByAccount
+  - PublicExportApi_CSATByAccountAndWorkspace
+- file: klaus-export-quiz-results.md
+  name: Export Zendesk QA quiz results and leaderboards
+  api: openapi/klaus-public-export-api-openapi-original.json
+  operations:
+  - PublicExportApi_Quizzes
+  - PublicExportApi_QuizOverview
+  - PublicExportApi_QuizResponses
+  - PublicExportApi_QuizResponse
+  - PublicExportApi_QuizzesLeaderboard

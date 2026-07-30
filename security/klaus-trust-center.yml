@@ -1,0 +1,30 @@
+generated: '2026-07-19'
+method: searched
+probe: true
+url: https://www.zendesk.com/trust-center/
+note: >-
+  Klaus ships as Zendesk QA; its compliance posture is carried by the Zendesk Trust
+  Center. Certifications below were read verbatim from that page.
+certifications:
+- SOC 2 Type II
+- ISO 27001:2022
+- ISO 27017:2015
+- ISO 27018:2019
+- ISO 27701:2019
+- ISO 42001
+- FedRAMP LI-SaaS
+- CSA STAR AI Levels 1 & 2
+- HIPAA (BAA available)
+- HDS
+programs:
+- name: SOC 2 Type II
+  availability: report available upon request under NDA
+- name: FedRAMP LI-SaaS
+  note: Zendesk is FedRAMP authorized at Low Impact SaaS and listed in the FedRAMP marketplace.
+- name: CSA STAR
+  registry: https://cloudsecurityalliance.org/star/registry/zendesk/services/zendesk/
+- name: Advanced Compliance
+  docs: https://support.zendesk.com/hc/en-us/articles/4408832117786-Advanced-Compliance
+evidence:
+- source: https://www.zendesk.com/trust-center/
+  keywords: [SOC 2 Type II, ISO 27001, ISO 27017, ISO 27018, ISO 27701, ISO 42001, FedRAMP, CSA STAR, HIPAA, GDPR]

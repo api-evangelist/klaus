@@ -1,0 +1,49 @@
+generated: '2026-07-19'
+method: searched
+source: >-
+  https://pub.klausapp.com/, https://support.zendesk.com/hc/en-us/sections/6999625340058-Using-Zendesk-QA,
+  https://status.zendesk.com/
+product_status:
+  name_history:
+  - {name: Klaus, period: '2019–2023', note: independent company, Tallinn, Estonia}
+  - {name: Zendesk QA, period: '2023–present', note: acquired by Zendesk; klausapp.com redirects to zendesk.com/service/quality-assurance/}
+  packaging: Add-on to Zendesk Suite (Quality Assurance) or part of Workforce Engagement Management (WEM)
+versioning:
+  scheme: >-
+    Path-segment version on the shared import host (https://pub.klausapp.com/v1/tickets);
+    the tenant-subdomain form is unversioned under the /qa base path.
+  spec_version: '1.0'
+  current: v1
+  docs: https://pub.klausapp.com/
+deprecation:
+  policy_url: null
+  sunset_header: false
+  note: >-
+    No dedicated API deprecation policy or Sunset/Deprecation header support is published
+    for the Klaus public APIs. Deprecations are announced as dated help-center
+    announcements, and Zendesk publishes platform-level API deprecation notices.
+  announcements:
+  - date: '2025-12-11'
+    title: Announcing the removal of Klaus surveys and the Zendesk QA conversations Insights view
+    url: https://support.zendesk.com/hc/en-us/articles/10049464191258-Announcing-the-removal-of-Klaus-surveys-and-the-Zendesk-QA-conversations-Insights-view
+  - date: null
+    title: Deprecation of password access for APIs
+    url: https://support.zendesk.com/hc/en-us/articles/9941874259354-Deprecation-of-password-access-for-APIs
+    note: Platform-wide Zendesk API change removing basic/password auth in favour of tokens.
+  - date: '2025-08-22'
+    title: Announcing the migration of Zendesk QA dashboards to a new platform
+    url: https://support.zendesk.com/hc/en-us/articles/9627121583258-Announcing-the-migration-of-Zendesk-QA-dashboards-to-a-new-platform
+deprecated_operations: []
+sla:
+  url: https://www.zendesk.com/company/agreements-and-terms/
+  uptime_target: null
+  note: Service-level commitments are governed by the Zendesk customer agreement, not a QA-specific SLA page.
+status_page: https://status.zendesk.com/
+data_retention:
+  configurable: true
+  where: 'Zendesk QA > Settings > Account > Connections > retention period (per custom integration)'
+  semantics: >-
+    Inactive conversations — tickets without manual reviews — are deleted after the selected
+    retention period, including all ticket review data stored in Zendesk QA.
+  docs: https://support.zendesk.com/hc/en-us/articles/7043669282714-Setting-up-a-custom-integration-in-Zendesk-QA
+changelog: changelog/klaus-changelog.yml
