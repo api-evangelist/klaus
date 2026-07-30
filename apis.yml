@@ -1,21 +1,90 @@
 aid: klaus
 name: Klaus
-description: 'Klaus is a company surfaced as a portfolio company of creandum and added to the API Evangelist
-  network as a stub for enrichment. Sector: other. This profile is a lead awaiting the enrichment pipeline.'
+description: 'Klaus is an AI-powered conversation review and quality assurance (QA) platform
+  for customer support teams, founded in Tallinn, Estonia in 2019 and acquired by Zendesk in
+  2023, where it now ships as Zendesk QA. The product samples support conversations from
+  connected help desks, scores them against configurable scorecards and rating categories,
+  runs AutoQA checks, tracks disputes and calibration sessions, measures CSAT, and delivers
+  coaching, quizzes and agent-performance dashboards. Klaus exposes two public REST APIs —
+  a Public Import API for pushing conversations and users into QA from a custom help desk,
+  and a Public Export API for pulling reviews, AutoQA ratings, CSAT, disputes, calibration
+  sessions, scorecards, quizzes and users back out for external analysis. Both are documented
+  as Swagger 2.0 specifications at pub.klausapp.com and authenticated with a bearer API token
+  issued from a Zendesk QA custom integration.'
 url: https://raw.githubusercontent.com/api-evangelist/klaus/refs/heads/main/apis.yml
+accessModel:
+  pricing: unknown
+  onboarding: self-serve
+  trial: false
+  try_now: false
+  public: false
+  label: Self-serve signup
+  confidence: medium
+  source:
+  - authentication
+  generated: '2026-07-22'
+  method: derived
+image: https://d1eipm3vz40hy0.cloudfront.net/images/logos/favicons/zendesk-image.png
 x-type: company
 x-source: vc-portfolio
 x-backed-by:
 - creandum
-x-tier: stub
-x-tier-reason: portfolio-lead
+x-tier: profiled
+x-tier-reason: public-api-specs-harvested
 specificationVersion: '0.20'
 created: '2026-07-17'
-modified: '2026-07-17'
+modified: '2026-07-19'
 tags:
 - Company
-- Other
-apis: []
+- Quality Assurance
+- Customer Support
+- Customer Experience
+- Conversation Analytics
+- Contact Center
+- Coaching
+- Artificial Intelligence
+- SaaS
+apis:
+- aid: klaus:klaus-pubimportapi-api
+  name: Klaus PubImportApi API
+  description: The PubImportApi API from Klaus — 3 operation(s) for pubimportapi.
+  humanURL: https://pub.klausapp.com/?urls.primaryName=Public+Export+API
+  baseURL: https://yoursubdomain.zendesk.com/qa
+  tags:
+  - PubImportApi
+  properties:
+  - type: OpenAPI
+    url: openapi/klaus-pubimportapi-api-openapi.yml
+  - type: Swagger
+    url: openapi/klaus-public-export-api-openapi-original.json
+  - type: Documentation
+    url: >-
+      https://support.zendesk.com/hc/en-us/articles/7043724806810-Exporting-data-from-Zendesk-QA
+  - type: Swagger
+    url: openapi/klaus-public-import-api-openapi-original.json
+  - type: Documentation
+    url: >-
+      https://support.zendesk.com/hc/en-us/articles/7043724785178-Importing-conversations-via-API-non-migrated-accounts
+- aid: klaus:klaus-publicexportapi-api
+  name: Klaus PublicExportApi API
+  description: The PublicExportApi API from Klaus — 18 operation(s) for publicexportapi.
+  humanURL: https://pub.klausapp.com/?urls.primaryName=Public+Export+API
+  baseURL: https://yoursubdomain.zendesk.com/qa
+  tags:
+  - PublicExportApi
+  properties:
+  - type: OpenAPI
+    url: openapi/klaus-publicexportapi-api-openapi.yml
+  - type: Swagger
+    url: openapi/klaus-public-export-api-openapi-original.json
+  - type: Documentation
+    url: >-
+      https://support.zendesk.com/hc/en-us/articles/7043724806810-Exporting-data-from-Zendesk-QA
+  - type: Swagger
+    url: openapi/klaus-public-import-api-openapi-original.json
+  - type: Documentation
+    url: >-
+      https://support.zendesk.com/hc/en-us/articles/7043724785178-Importing-conversations-via-API-non-migrated-accounts
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com
@@ -24,3 +93,74 @@ maintainers:
 common:
 - type: Website
   url: https://www.klausapp.com/
+- type: ProductPage
+  url: https://www.zendesk.com/service/quality-assurance/
+- type: DeveloperPortal
+  url: https://developer.zendesk.com/
+- type: Documentation
+  url: https://support.zendesk.com/hc/en-us/sections/6999625340058-Using-Zendesk-QA
+- type: APIReference
+  url: https://pub.klausapp.com/
+- type: GettingStarted
+  url: https://support.zendesk.com/hc/en-us/articles/10093676975898-Getting-started-with-Zendesk-QA-Admin-guide
+- type: Support
+  url: https://support.zendesk.com/hc/en-us/articles/4408843597850-Contacting-Zendesk-customer-support
+- type: Blog
+  url: https://www.zendesk.com/blog/
+- type: GitHubOrganization
+  url: https://github.com/klausapp
+- type: Pricing
+  url: https://www.zendesk.com/pricing/
+- type: SignUp
+  url: https://www.zendesk.com/register/
+- type: Login
+  url: https://www.zendesk.com/login/
+- type: TermsOfService
+  url: https://www.zendesk.com/company/agreements-and-terms/zendesk-customer-agreement/
+- type: PrivacyPolicy
+  url: https://www.zendesk.com/company/agreements-and-terms/privacy-notice/
+- type: StatusPage
+  url: https://status.zendesk.com/
+- type: Deprecation
+  url: https://support.zendesk.com/hc/en-us/articles/10049464191258-Announcing-the-removal-of-Klaus-surveys-and-the-Zendesk-QA-conversations-Insights-view
+- type: Security
+  url: https://www.zendesk.com/company/policies-and-guidelines/responsible-disclosure-policy/
+- type: Compliance
+  url: https://www.zendesk.com/trust-center/
+- type: TrustCenter
+  url: https://www.zendesk.com/trust-center/
+- type: VulnerabilityDisclosure
+  url: security/klaus-vulnerability-disclosure.yml
+- type: DomainSecurity
+  url: security/klaus-domain-security.yml
+- type: Authentication
+  url: authentication/klaus-authentication.yml
+- type: Conventions
+  url: conventions/klaus-conventions.yml
+- type: Idempotency
+  url: conventions/klaus-conventions.yml
+- type: RateLimits
+  url: rate-limits/klaus-rate-limits.yml
+- type: ErrorCatalog
+  url: errors/klaus-problem-types.yml
+- type: Lifecycle
+  url: lifecycle/klaus-lifecycle.yml
+- type: ChangeLog
+  url: changelog/klaus-changelog.yml
+- type: Conformance
+  url: conformance/klaus-conformance.yml
+- type: DataModel
+  url: data-model/klaus-data-model.yml
+- type: MCPServer
+  url: mcp/klaus-mcp.yml
+- type: LLMsTxt
+  url: llms/klaus-llms.txt
+- type: WellKnown
+  url: well-known/klaus-well-known.yml
+- type: AgentSkill
+  url: skills/_index.yml
+x-enrichment:
+  date: '2026-07-19'
+  status: backfilled
+  pass: local-v1
+  note: backfilled from .gitignore signal + verified work evidence
