@@ -1,0 +1,519 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Public Export PubImportApi PublicExportApi API",
+    "version": "1.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "PublicExportApi",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "AutoQARatings returns AutoQA rating rows for export",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/api/export/autoqa/ratings",
+            "params": [
+              {
+                "name": "fromDate",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "toDate",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "workspaceId",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "connectionId",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "revieweeExternalId",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "latestOnly",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "pageSize",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "autoqaCategoryType",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "ratingCategoryId",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "rootCauseCode",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "cursor",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "AutoQARatings returns AutoQA rating rows for export"
+        },
+        {
+          "info": {
+            "name": "AutoQAReviews returns AutoQA review rows for export",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/api/export/autoqa/reviews",
+            "params": [
+              {
+                "name": "fromDate",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "toDate",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "workspaceId",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "connectionId",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "revieweeExternalId",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "latestOnly",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "pageSize",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "cursor",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "AutoQAReviews returns AutoQA review rows for export"
+        },
+        {
+          "info": {
+            "name": "ConversationSearch returns conversation data for the given request",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/api/export/conversations/search"
+          },
+          "docs": "ConversationSearch returns conversation data for the given request"
+        },
+        {
+          "info": {
+            "name": "CSATByAccount returns CSAT for tickets",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/api/export/csat",
+            "params": [
+              {
+                "name": "workspace",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "fromDate",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "toDate",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "pageSize",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "CSATByAccount returns CSAT for tickets"
+        },
+        {
+          "info": {
+            "name": "Quizzes returns all quizzes",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/api/export/quizzes"
+          },
+          "docs": "Quizzes returns all quizzes"
+        },
+        {
+          "info": {
+            "name": "QuizzesLeaderboard returns leaderboard of quizzes",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/api/export/quizzes/leaderboard"
+          },
+          "docs": "QuizzesLeaderboard returns leaderboard of quizzes"
+        },
+        {
+          "info": {
+            "name": "QuizOverview returns specific quiz overview",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/api/export/quizzes/:id/overview",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "QuizOverview returns specific quiz overview"
+        },
+        {
+          "info": {
+            "name": "QuizResponses returns responses for specific quiz",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/api/export/quizzes/:id/responses",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "QuizResponses returns responses for specific quiz"
+        },
+        {
+          "info": {
+            "name": "QuizResponse returns a single response for the specific quiz",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/api/export/quizzes/:id/responses/:response",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "response",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "QuizResponse returns a single response for the specific quiz"
+        },
+        {
+          "info": {
+            "name": "AccountReviews returns reviews and associated comments",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/api/export/reviews",
+            "params": [
+              {
+                "name": "fromDate",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "toDate",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "pageSize",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "AccountReviews returns reviews and associated comments"
+        },
+        {
+          "info": {
+            "name": "Users returns users belonging to specified account",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/api/export/users"
+          },
+          "docs": "Users returns users belonging to specified account"
+        },
+        {
+          "info": {
+            "name": "PublicExportApi_CalibrationSessions",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/api/export/workspace/:workspace/calibration-sessions",
+            "params": [
+              {
+                "name": "workspace",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "fromDate",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "toDate",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "pageSize",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          }
+        },
+        {
+          "info": {
+            "name": "CSATByAccountAndWorkspace returns CSAT for tickets",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/api/export/workspace/:workspace/csat",
+            "params": [
+              {
+                "name": "workspace",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "fromDate",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "toDate",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "pageSize",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "CSATByAccountAndWorkspace returns CSAT for tickets"
+        },
+        {
+          "info": {
+            "name": "Disputes returns disputes",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/api/export/workspace/:workspace/disputes",
+            "params": [
+              {
+                "name": "workspace",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "fromDate",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "toDate",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "pageSize",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Disputes returns disputes"
+        },
+        {
+          "info": {
+            "name": "Reviews returns reviews and associated comments",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/api/export/workspace/:workspace/reviews",
+            "params": [
+              {
+                "name": "workspace",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "fromDate",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "toDate",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "pageSize",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Reviews returns reviews and associated comments"
+        },
+        {
+          "info": {
+            "name": "PublicExportApi_WorkspaceScorecards",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/api/export/workspace/:workspace/scorecards",
+            "params": [
+              {
+                "name": "workspace",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          }
+        },
+        {
+          "info": {
+            "name": "WorkspaceUsers returns users belonging to specified account and workspace",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/api/export/workspace/:workspace/users",
+            "params": [
+              {
+                "name": "workspace",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "WorkspaceUsers returns users belonging to specified account and workspace"
+        },
+        {
+          "info": {
+            "name": "PublicExportApi_Workspaces",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/api/export/workspaces"
+          }
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

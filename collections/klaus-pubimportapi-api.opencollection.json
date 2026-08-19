@@ -1,0 +1,72 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Public Export PubImportApi API",
+    "version": "1.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "PubImportApi",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "PubImportApi_ImportTickets",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/api/import/tickets"
+          }
+        },
+        {
+          "info": {
+            "name": "PubImportApi_DeleteImportedTicket",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/api/import/tickets",
+            "params": [
+              {
+                "name": "ticketExternalIds",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          }
+        },
+        {
+          "info": {
+            "name": "PubImportApi_GetImportedTicket",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/api/import/tickets/:ticketExternalId",
+            "params": [
+              {
+                "name": "ticketExternalId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          }
+        },
+        {
+          "info": {
+            "name": "PubImportApi_ImportUsers",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/api/import/users"
+          }
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,15 +1,11 @@
 generated: '2026-07-19'
 method: derived
 status: candidate
-source: >-
-  openapi/klaus-public-export-api-openapi-original.json,
-  openapi/klaus-public-import-api-openapi-original.json
-note: >-
-  No official hosted or remote MCP server is published by Klaus / Zendesk QA. Searches of
-  the provider documentation, the github.com/klausapp organization (0 public repositories),
-  and the npm registry found no first-party MCP server. The tools below are a CANDIDATE
-  surface derived one-to-one from the operations in the two published Swagger 2.0
-  specifications; they are a design starting point, not a provider claim.
+source: openapi/klaus-public-export-api-openapi-original.json, openapi/klaus-public-import-api-openapi-original.json
+note: No official hosted or remote MCP server is published by Klaus / Zendesk QA. Searches of the provider
+  documentation, the github.com/klausapp organization (0 public repositories), and the npm registry found
+  no first-party MCP server. The tools below are a CANDIDATE surface derived one-to-one from the operations
+  in the two published Swagger 2.0 specifications; they are a design starting point, not a provider claim.
 server:
   name: klaus
   transport: null
@@ -20,91 +16,97 @@ auth:
   header: Authorization
   note: Bearer API token from a Zendesk QA custom integration; see authentication/klaus-authentication.yml
 tools:
-  - name: autoqa_ratings
-    description: "AutoQARatings returns AutoQA rating rows for export"
-    source_operation: openapi/klaus-public-export-api-openapi-original.json#PublicExportApi_AutoQARatings
-    http: GET /api/export/autoqa/ratings
-  - name: autoqa_reviews
-    description: "AutoQAReviews returns AutoQA review rows for export"
-    source_operation: openapi/klaus-public-export-api-openapi-original.json#PublicExportApi_AutoQAReviews
-    http: GET /api/export/autoqa/reviews
-  - name: conversation_search
-    description: "ConversationSearch returns conversation data for the given request"
-    source_operation: openapi/klaus-public-export-api-openapi-original.json#PublicExportApi_ConversationSearch
-    http: POST /api/export/conversations/search
-  - name: csat_by_account
-    description: "CSATByAccount returns CSAT for tickets"
-    source_operation: openapi/klaus-public-export-api-openapi-original.json#PublicExportApi_CSATByAccount
-    http: GET /api/export/csat
-  - name: quizzes
-    description: "Quizzes returns all quizzes"
-    source_operation: openapi/klaus-public-export-api-openapi-original.json#PublicExportApi_Quizzes
-    http: GET /api/export/quizzes
-  - name: quizzes_leaderboard
-    description: "QuizzesLeaderboard returns leaderboard of quizzes"
-    source_operation: openapi/klaus-public-export-api-openapi-original.json#PublicExportApi_QuizzesLeaderboard
-    http: GET /api/export/quizzes/leaderboard
-  - name: quiz_overview
-    description: "QuizOverview returns specific quiz overview"
-    source_operation: openapi/klaus-public-export-api-openapi-original.json#PublicExportApi_QuizOverview
-    http: GET /api/export/quizzes/{id}/overview
-  - name: quiz_responses
-    description: "QuizResponses returns responses for specific quiz"
-    source_operation: openapi/klaus-public-export-api-openapi-original.json#PublicExportApi_QuizResponses
-    http: GET /api/export/quizzes/{id}/responses
-  - name: quiz_response
-    description: "QuizResponse returns a single response for the specific quiz"
-    source_operation: openapi/klaus-public-export-api-openapi-original.json#PublicExportApi_QuizResponse
-    http: GET /api/export/quizzes/{id}/responses/{response}
-  - name: account_reviews
-    description: "AccountReviews returns reviews and associated comments"
-    source_operation: openapi/klaus-public-export-api-openapi-original.json#PublicExportApi_AccountReviews
-    http: GET /api/export/reviews
-  - name: users
-    description: "Users returns users belonging to specified account"
-    source_operation: openapi/klaus-public-export-api-openapi-original.json#PublicExportApi_Users
-    http: GET /api/export/users
-  - name: calibration_sessions
-    description: "GET /api/export/workspace/{workspace}/calibration-sessions"
-    source_operation: openapi/klaus-public-export-api-openapi-original.json#PublicExportApi_CalibrationSessions
-    http: GET /api/export/workspace/{workspace}/calibration-sessions
-  - name: csat_by_account_and_workspace
-    description: "CSATByAccountAndWorkspace returns CSAT for tickets"
-    source_operation: openapi/klaus-public-export-api-openapi-original.json#PublicExportApi_CSATByAccountAndWorkspace
-    http: GET /api/export/workspace/{workspace}/csat
-  - name: disputes
-    description: "Disputes returns disputes"
-    source_operation: openapi/klaus-public-export-api-openapi-original.json#PublicExportApi_Disputes
-    http: GET /api/export/workspace/{workspace}/disputes
-  - name: reviews
-    description: "Reviews returns reviews and associated comments"
-    source_operation: openapi/klaus-public-export-api-openapi-original.json#PublicExportApi_Reviews
-    http: GET /api/export/workspace/{workspace}/reviews
-  - name: workspace_scorecards
-    description: "GET /api/export/workspace/{workspace}/scorecards"
-    source_operation: openapi/klaus-public-export-api-openapi-original.json#PublicExportApi_WorkspaceScorecards
-    http: GET /api/export/workspace/{workspace}/scorecards
-  - name: workspace_users
-    description: "WorkspaceUsers returns users belonging to specified account and workspace"
-    source_operation: openapi/klaus-public-export-api-openapi-original.json#PublicExportApi_WorkspaceUsers
-    http: GET /api/export/workspace/{workspace}/users
-  - name: workspaces
-    description: "GET /api/export/workspaces"
-    source_operation: openapi/klaus-public-export-api-openapi-original.json#PublicExportApi_Workspaces
-    http: GET /api/export/workspaces
-  - name: delete_imported_ticket
-    description: "DELETE /api/import/tickets"
-    source_operation: openapi/klaus-public-import-api-openapi-original.json#PubImportApi_DeleteImportedTicket
-    http: DELETE /api/import/tickets
-  - name: import_tickets
-    description: "POST /api/import/tickets"
-    source_operation: openapi/klaus-public-import-api-openapi-original.json#PubImportApi_ImportTickets
-    http: POST /api/import/tickets
-  - name: get_imported_ticket
-    description: "GET /api/import/tickets/{ticketExternalId}"
-    source_operation: openapi/klaus-public-import-api-openapi-original.json#PubImportApi_GetImportedTicket
-    http: GET /api/import/tickets/{ticketExternalId}
-  - name: import_users
-    description: "POST /api/import/users"
-    source_operation: openapi/klaus-public-import-api-openapi-original.json#PubImportApi_ImportUsers
-    http: POST /api/import/users
+- name: autoqa_ratings
+  description: AutoQARatings returns AutoQA rating rows for export
+  source_operation: openapi/klaus-public-export-api-openapi-original.json#PublicExportApi_AutoQARatings
+  http: GET /api/export/autoqa/ratings
+- name: autoqa_reviews
+  description: AutoQAReviews returns AutoQA review rows for export
+  source_operation: openapi/klaus-public-export-api-openapi-original.json#PublicExportApi_AutoQAReviews
+  http: GET /api/export/autoqa/reviews
+- name: conversation_search
+  description: ConversationSearch returns conversation data for the given request
+  source_operation: openapi/klaus-public-export-api-openapi-original.json#PublicExportApi_ConversationSearch
+  http: POST /api/export/conversations/search
+- name: csat_by_account
+  description: CSATByAccount returns CSAT for tickets
+  source_operation: openapi/klaus-public-export-api-openapi-original.json#PublicExportApi_CSATByAccount
+  http: GET /api/export/csat
+- name: quizzes
+  description: Quizzes returns all quizzes
+  source_operation: openapi/klaus-public-export-api-openapi-original.json#PublicExportApi_Quizzes
+  http: GET /api/export/quizzes
+- name: quizzes_leaderboard
+  description: QuizzesLeaderboard returns leaderboard of quizzes
+  source_operation: openapi/klaus-public-export-api-openapi-original.json#PublicExportApi_QuizzesLeaderboard
+  http: GET /api/export/quizzes/leaderboard
+- name: quiz_overview
+  description: QuizOverview returns specific quiz overview
+  source_operation: openapi/klaus-public-export-api-openapi-original.json#PublicExportApi_QuizOverview
+  http: GET /api/export/quizzes/{id}/overview
+- name: quiz_responses
+  description: QuizResponses returns responses for specific quiz
+  source_operation: openapi/klaus-public-export-api-openapi-original.json#PublicExportApi_QuizResponses
+  http: GET /api/export/quizzes/{id}/responses
+- name: quiz_response
+  description: QuizResponse returns a single response for the specific quiz
+  source_operation: openapi/klaus-public-export-api-openapi-original.json#PublicExportApi_QuizResponse
+  http: GET /api/export/quizzes/{id}/responses/{response}
+- name: account_reviews
+  description: AccountReviews returns reviews and associated comments
+  source_operation: openapi/klaus-public-export-api-openapi-original.json#PublicExportApi_AccountReviews
+  http: GET /api/export/reviews
+- name: users
+  description: Users returns users belonging to specified account
+  source_operation: openapi/klaus-public-export-api-openapi-original.json#PublicExportApi_Users
+  http: GET /api/export/users
+- name: calibration_sessions
+  description: GET /api/export/workspace/{workspace}/calibration-sessions
+  source_operation: openapi/klaus-public-export-api-openapi-original.json#PublicExportApi_CalibrationSessions
+  http: GET /api/export/workspace/{workspace}/calibration-sessions
+- name: csat_by_account_and_workspace
+  description: CSATByAccountAndWorkspace returns CSAT for tickets
+  source_operation: openapi/klaus-public-export-api-openapi-original.json#PublicExportApi_CSATByAccountAndWorkspace
+  http: GET /api/export/workspace/{workspace}/csat
+- name: disputes
+  description: Disputes returns disputes
+  source_operation: openapi/klaus-public-export-api-openapi-original.json#PublicExportApi_Disputes
+  http: GET /api/export/workspace/{workspace}/disputes
+- name: reviews
+  description: Reviews returns reviews and associated comments
+  source_operation: openapi/klaus-public-export-api-openapi-original.json#PublicExportApi_Reviews
+  http: GET /api/export/workspace/{workspace}/reviews
+- name: workspace_scorecards
+  description: GET /api/export/workspace/{workspace}/scorecards
+  source_operation: openapi/klaus-public-export-api-openapi-original.json#PublicExportApi_WorkspaceScorecards
+  http: GET /api/export/workspace/{workspace}/scorecards
+- name: workspace_users
+  description: WorkspaceUsers returns users belonging to specified account and workspace
+  source_operation: openapi/klaus-public-export-api-openapi-original.json#PublicExportApi_WorkspaceUsers
+  http: GET /api/export/workspace/{workspace}/users
+- name: workspaces
+  description: GET /api/export/workspaces
+  source_operation: openapi/klaus-public-export-api-openapi-original.json#PublicExportApi_Workspaces
+  http: GET /api/export/workspaces
+- name: delete_imported_ticket
+  description: DELETE /api/import/tickets
+  source_operation: openapi/klaus-public-import-api-openapi-original.json#PubImportApi_DeleteImportedTicket
+  http: DELETE /api/import/tickets
+- name: import_tickets
+  description: POST /api/import/tickets
+  source_operation: openapi/klaus-public-import-api-openapi-original.json#PubImportApi_ImportTickets
+  http: POST /api/import/tickets
+- name: get_imported_ticket
+  description: GET /api/import/tickets/{ticketExternalId}
+  source_operation: openapi/klaus-public-import-api-openapi-original.json#PubImportApi_GetImportedTicket
+  http: GET /api/import/tickets/{ticketExternalId}
+- name: import_users
+  description: POST /api/import/users
+  source_operation: openapi/klaus-public-import-api-openapi-original.json#PubImportApi_ImportUsers
+  http: POST /api/import/users
+deployment:
+  mode: none
+  verified: derived
+  tools: 22
+  checked: '2026-08-12'
+  source: catalog MCP census

@@ -1,0 +1,659 @@
+{
+  "item": [
+    {
+      "id": "a3f6b585-2e3a-4d4c-b95f-6de9348a2683",
+      "name": "PubImportApi",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "87206c2d-9955-4a71-bd81-b52fcdf3d481",
+          "name": "Pub Import Api Delete Imported Ticket",
+          "request": {
+            "name": "Pub Import Api Delete Imported Ticket",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "import",
+                "tickets"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "ticketExternalIds",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "ticketExternalIds",
+                  "value": "<string>"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "21969fdf-1e00-4ec2-9b38-d7c71f400e0b",
+              "name": "A successful response.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "import",
+                    "tickets"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "ticketExternalIds",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "ticketExternalIds",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "c91452a3-0685-4095-95d0-b8e834fd9adc",
+              "name": "An unexpected error response.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "import",
+                    "tickets"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "ticketExternalIds",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "ticketExternalIds",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 3170,\n  \"message\": \"string\",\n  \"details\": [\n    {\n      \"@type\": \"string\",\n      \"key_0\": {},\n      \"key_1\": {},\n      \"key_2\": {},\n      \"key_3\": {}\n    },\n    {\n      \"@type\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "1d9d6672-9dbb-44cb-81d5-86502d4c3314",
+          "name": "Pub Import Api Import Tickets",
+          "request": {
+            "name": "Pub Import Api Import Tickets",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "import",
+                "tickets"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"data\": [\n    {\n      \"id\": \"<string>\",\n      \"assigneeEmail\": \"<string>\",\n      \"assigneeName\": \"<string>\",\n      \"description\": \"<string>\",\n      \"subject\": \"<string>\",\n      \"created\": \"<string>\",\n      \"updated\": \"<string>\",\n      \"status\": \"<string>\",\n      \"customerName\": \"<string>\",\n      \"customerEmail\": \"<string>\",\n      \"comments\": [\n        {\n          \"id\": \"<string>\",\n          \"authorName\": \"<string>\",\n          \"authorEmail\": \"<string>\",\n          \"authorIsNotClient\": \"<boolean>\",\n          \"public\": \"<boolean>\",\n          \"comment\": \"<string>\",\n          \"created\": \"<string>\",\n          \"updated\": \"<string>\",\n          \"recordingUrl\": \"<string>\",\n          \"attachmentUrl\": \"<string>\",\n          \"attachmentName\": \"<string>\",\n          \"callDuration\": \"<int64>\",\n          \"callDirection\": \"<string>\",\n          \"isBucketKey\": \"<boolean>\"\n        },\n        {\n          \"id\": \"<string>\",\n          \"authorName\": \"<string>\",\n          \"authorEmail\": \"<string>\",\n          \"authorIsNotClient\": \"<boolean>\",\n          \"public\": \"<boolean>\",\n          \"comment\": \"<string>\",\n          \"created\": \"<string>\",\n          \"updated\": \"<string>\",\n          \"recordingUrl\": \"<string>\",\n          \"attachmentUrl\": \"<string>\",\n          \"attachmentName\": \"<string>\",\n          \"callDuration\": \"<int64>\",\n          \"callDirection\": \"<string>\",\n          \"isBucketKey\": \"<boolean>\"\n        }\n      ],\n      \"ticketFields\": [\n        {\n          \"id\": \"<string>\",\n          \"label\": \"<string>\",\n          \"updated\": \"<string>\",\n          \"values\": [\n            {\n              \"label\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"value\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"label\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"value\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ]\n        },\n        {\n          \"id\": \"<string>\",\n          \"label\": \"<string>\",\n          \"updated\": \"<string>\",\n          \"values\": [\n            {\n              \"label\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"value\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"label\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"value\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ]\n        }\n      ],\n      \"channel\": \"<string>\",\n      \"type\": \"<string>\",\n      \"satisfactionScore\": \"<string>\",\n      \"satisfactionComment\": \"<string>\",\n      \"closed\": \"<string>\",\n      \"url\": \"<string>\",\n      \"tags\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    },\n    {\n      \"id\": \"<string>\",\n      \"assigneeEmail\": \"<string>\",\n      \"assigneeName\": \"<string>\",\n      \"description\": \"<string>\",\n      \"subject\": \"<string>\",\n      \"created\": \"<string>\",\n      \"updated\": \"<string>\",\n      \"status\": \"<string>\",\n      \"customerName\": \"<string>\",\n      \"customerEmail\": \"<string>\",\n      \"comments\": [\n        {\n          \"id\": \"<string>\",\n          \"authorName\": \"<string>\",\n          \"authorEmail\": \"<string>\",\n          \"authorIsNotClient\": \"<boolean>\",\n          \"public\": \"<boolean>\",\n          \"comment\": \"<string>\",\n          \"created\": \"<string>\",\n          \"updated\": \"<string>\",\n          \"recordingUrl\": \"<string>\",\n          \"attachmentUrl\": \"<string>\",\n          \"attachmentName\": \"<string>\",\n          \"callDuration\": \"<int64>\",\n          \"callDirection\": \"<string>\",\n          \"isBucketKey\": \"<boolean>\"\n        },\n        {\n          \"id\": \"<string>\",\n          \"authorName\": \"<string>\",\n          \"authorEmail\": \"<string>\",\n          \"authorIsNotClient\": \"<boolean>\",\n          \"public\": \"<boolean>\",\n          \"comment\": \"<string>\",\n          \"created\": \"<string>\",\n          \"updated\": \"<string>\",\n          \"recordingUrl\": \"<string>\",\n          \"attachmentUrl\": \"<string>\",\n          \"attachmentName\": \"<string>\",\n          \"callDuration\": \"<int64>\",\n          \"callDirection\": \"<string>\",\n          \"isBucketKey\": \"<boolean>\"\n        }\n      ],\n      \"ticketFields\": [\n        {\n          \"id\": \"<string>\",\n          \"label\": \"<string>\",\n          \"updated\": \"<string>\",\n          \"values\": [\n            {\n              \"label\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"value\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"label\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"value\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ]\n        },\n        {\n          \"id\": \"<string>\",\n          \"label\": \"<string>\",\n          \"updated\": \"<string>\",\n          \"values\": [\n            {\n              \"label\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"value\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"label\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"value\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ]\n        }\n      ],\n      \"channel\": \"<string>\",\n      \"type\": \"<string>\",\n      \"satisfactionScore\": \"<string>\",\n      \"satisfactionComment\": \"<string>\",\n      \"closed\": \"<string>\",\n      \"url\": \"<string>\",\n      \"tags\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "aafe939f-f0aa-47d5-8aab-334de82d85d4",
+              "name": "A successful response.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "import",
+                    "tickets"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"data\": [\n    {\n      \"id\": \"<string>\",\n      \"assigneeEmail\": \"<string>\",\n      \"assigneeName\": \"<string>\",\n      \"description\": \"<string>\",\n      \"subject\": \"<string>\",\n      \"created\": \"<string>\",\n      \"updated\": \"<string>\",\n      \"status\": \"<string>\",\n      \"customerName\": \"<string>\",\n      \"customerEmail\": \"<string>\",\n      \"comments\": [\n        {\n          \"id\": \"<string>\",\n          \"authorName\": \"<string>\",\n          \"authorEmail\": \"<string>\",\n          \"authorIsNotClient\": \"<boolean>\",\n          \"public\": \"<boolean>\",\n          \"comment\": \"<string>\",\n          \"created\": \"<string>\",\n          \"updated\": \"<string>\",\n          \"recordingUrl\": \"<string>\",\n          \"attachmentUrl\": \"<string>\",\n          \"attachmentName\": \"<string>\",\n          \"callDuration\": \"<int64>\",\n          \"callDirection\": \"<string>\",\n          \"isBucketKey\": \"<boolean>\"\n        },\n        {\n          \"id\": \"<string>\",\n          \"authorName\": \"<string>\",\n          \"authorEmail\": \"<string>\",\n          \"authorIsNotClient\": \"<boolean>\",\n          \"public\": \"<boolean>\",\n          \"comment\": \"<string>\",\n          \"created\": \"<string>\",\n          \"updated\": \"<string>\",\n          \"recordingUrl\": \"<string>\",\n          \"attachmentUrl\": \"<string>\",\n          \"attachmentName\": \"<string>\",\n          \"callDuration\": \"<int64>\",\n          \"callDirection\": \"<string>\",\n          \"isBucketKey\": \"<boolean>\"\n        }\n      ],\n      \"ticketFields\": [\n        {\n          \"id\": \"<string>\",\n          \"label\": \"<string>\",\n          \"updated\": \"<string>\",\n          \"values\": [\n            {\n              \"label\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"value\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"label\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"value\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ]\n        },\n        {\n          \"id\": \"<string>\",\n          \"label\": \"<string>\",\n          \"updated\": \"<string>\",\n          \"values\": [\n            {\n              \"label\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"value\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"label\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"value\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ]\n        }\n      ],\n      \"channel\": \"<string>\",\n      \"type\": \"<string>\",\n      \"satisfactionScore\": \"<string>\",\n      \"satisfactionComment\": \"<string>\",\n      \"closed\": \"<string>\",\n      \"url\": \"<string>\",\n      \"tags\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    },\n    {\n      \"id\": \"<string>\",\n      \"assigneeEmail\": \"<string>\",\n      \"assigneeName\": \"<string>\",\n      \"description\": \"<string>\",\n      \"subject\": \"<string>\",\n      \"created\": \"<string>\",\n      \"updated\": \"<string>\",\n      \"status\": \"<string>\",\n      \"customerName\": \"<string>\",\n      \"customerEmail\": \"<string>\",\n      \"comments\": [\n        {\n          \"id\": \"<string>\",\n          \"authorName\": \"<string>\",\n          \"authorEmail\": \"<string>\",\n          \"authorIsNotClient\": \"<boolean>\",\n          \"public\": \"<boolean>\",\n          \"comment\": \"<string>\",\n          \"created\": \"<string>\",\n          \"updated\": \"<string>\",\n          \"recordingUrl\": \"<string>\",\n          \"attachmentUrl\": \"<string>\",\n          \"attachmentName\": \"<string>\",\n          \"callDuration\": \"<int64>\",\n          \"callDirection\": \"<string>\",\n          \"isBucketKey\": \"<boolean>\"\n        },\n        {\n          \"id\": \"<string>\",\n          \"authorName\": \"<string>\",\n          \"authorEmail\": \"<string>\",\n          \"authorIsNotClient\": \"<boolean>\",\n          \"public\": \"<boolean>\",\n          \"comment\": \"<string>\",\n          \"created\": \"<string>\",\n          \"updated\": \"<string>\",\n          \"recordingUrl\": \"<string>\",\n          \"attachmentUrl\": \"<string>\",\n          \"attachmentName\": \"<string>\",\n          \"callDuration\": \"<int64>\",\n          \"callDirection\": \"<string>\",\n          \"isBucketKey\": \"<boolean>\"\n        }\n      ],\n      \"ticketFields\": [\n        {\n          \"id\": \"<string>\",\n          \"label\": \"<string>\",\n          \"updated\": \"<string>\",\n          \"values\": [\n            {\n              \"label\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"value\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"label\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"value\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ]\n        },\n        {\n          \"id\": \"<string>\",\n          \"label\": \"<string>\",\n          \"updated\": \"<string>\",\n          \"values\": [\n            {\n              \"label\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"value\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"label\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"value\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ]\n        }\n      ],\n      \"channel\": \"<string>\",\n      \"type\": \"<string>\",\n      \"satisfactionScore\": \"<string>\",\n      \"satisfactionComment\": \"<string>\",\n      \"closed\": \"<string>\",\n      \"url\": \"<string>\",\n      \"tags\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "8674ab50-017e-474c-b58a-200da07f7e31",
+              "name": "An unexpected error response.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "import",
+                    "tickets"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"data\": [\n    {\n      \"id\": \"<string>\",\n      \"assigneeEmail\": \"<string>\",\n      \"assigneeName\": \"<string>\",\n      \"description\": \"<string>\",\n      \"subject\": \"<string>\",\n      \"created\": \"<string>\",\n      \"updated\": \"<string>\",\n      \"status\": \"<string>\",\n      \"customerName\": \"<string>\",\n      \"customerEmail\": \"<string>\",\n      \"comments\": [\n        {\n          \"id\": \"<string>\",\n          \"authorName\": \"<string>\",\n          \"authorEmail\": \"<string>\",\n          \"authorIsNotClient\": \"<boolean>\",\n          \"public\": \"<boolean>\",\n          \"comment\": \"<string>\",\n          \"created\": \"<string>\",\n          \"updated\": \"<string>\",\n          \"recordingUrl\": \"<string>\",\n          \"attachmentUrl\": \"<string>\",\n          \"attachmentName\": \"<string>\",\n          \"callDuration\": \"<int64>\",\n          \"callDirection\": \"<string>\",\n          \"isBucketKey\": \"<boolean>\"\n        },\n        {\n          \"id\": \"<string>\",\n          \"authorName\": \"<string>\",\n          \"authorEmail\": \"<string>\",\n          \"authorIsNotClient\": \"<boolean>\",\n          \"public\": \"<boolean>\",\n          \"comment\": \"<string>\",\n          \"created\": \"<string>\",\n          \"updated\": \"<string>\",\n          \"recordingUrl\": \"<string>\",\n          \"attachmentUrl\": \"<string>\",\n          \"attachmentName\": \"<string>\",\n          \"callDuration\": \"<int64>\",\n          \"callDirection\": \"<string>\",\n          \"isBucketKey\": \"<boolean>\"\n        }\n      ],\n      \"ticketFields\": [\n        {\n          \"id\": \"<string>\",\n          \"label\": \"<string>\",\n          \"updated\": \"<string>\",\n          \"values\": [\n            {\n              \"label\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"value\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"label\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"value\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ]\n        },\n        {\n          \"id\": \"<string>\",\n          \"label\": \"<string>\",\n          \"updated\": \"<string>\",\n          \"values\": [\n            {\n              \"label\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"value\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"label\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"value\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ]\n        }\n      ],\n      \"channel\": \"<string>\",\n      \"type\": \"<string>\",\n      \"satisfactionScore\": \"<string>\",\n      \"satisfactionComment\": \"<string>\",\n      \"closed\": \"<string>\",\n      \"url\": \"<string>\",\n      \"tags\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    },\n    {\n      \"id\": \"<string>\",\n      \"assigneeEmail\": \"<string>\",\n      \"assigneeName\": \"<string>\",\n      \"description\": \"<string>\",\n      \"subject\": \"<string>\",\n      \"created\": \"<string>\",\n      \"updated\": \"<string>\",\n      \"status\": \"<string>\",\n      \"customerName\": \"<string>\",\n      \"customerEmail\": \"<string>\",\n      \"comments\": [\n        {\n          \"id\": \"<string>\",\n          \"authorName\": \"<string>\",\n          \"authorEmail\": \"<string>\",\n          \"authorIsNotClient\": \"<boolean>\",\n          \"public\": \"<boolean>\",\n          \"comment\": \"<string>\",\n          \"created\": \"<string>\",\n          \"updated\": \"<string>\",\n          \"recordingUrl\": \"<string>\",\n          \"attachmentUrl\": \"<string>\",\n          \"attachmentName\": \"<string>\",\n          \"callDuration\": \"<int64>\",\n          \"callDirection\": \"<string>\",\n          \"isBucketKey\": \"<boolean>\"\n        },\n        {\n          \"id\": \"<string>\",\n          \"authorName\": \"<string>\",\n          \"authorEmail\": \"<string>\",\n          \"authorIsNotClient\": \"<boolean>\",\n          \"public\": \"<boolean>\",\n          \"comment\": \"<string>\",\n          \"created\": \"<string>\",\n          \"updated\": \"<string>\",\n          \"recordingUrl\": \"<string>\",\n          \"attachmentUrl\": \"<string>\",\n          \"attachmentName\": \"<string>\",\n          \"callDuration\": \"<int64>\",\n          \"callDirection\": \"<string>\",\n          \"isBucketKey\": \"<boolean>\"\n        }\n      ],\n      \"ticketFields\": [\n        {\n          \"id\": \"<string>\",\n          \"label\": \"<string>\",\n          \"updated\": \"<string>\",\n          \"values\": [\n            {\n              \"label\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"value\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"label\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"value\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ]\n        },\n        {\n          \"id\": \"<string>\",\n          \"label\": \"<string>\",\n          \"updated\": \"<string>\",\n          \"values\": [\n            {\n              \"label\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"value\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"label\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"value\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ]\n        }\n      ],\n      \"channel\": \"<string>\",\n      \"type\": \"<string>\",\n      \"satisfactionScore\": \"<string>\",\n      \"satisfactionComment\": \"<string>\",\n      \"closed\": \"<string>\",\n      \"url\": \"<string>\",\n      \"tags\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 5472,\n  \"message\": \"string\",\n  \"details\": [\n    {\n      \"@type\": \"string\"\n    },\n    {\n      \"@type\": \"string\",\n      \"key_0\": {},\n      \"key_1\": {},\n      \"key_2\": {}\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "c10eee2d-ce2c-4c89-ba47-15aeaf2487d4",
+          "name": "Pub Import Api Get Imported Ticket",
+          "request": {
+            "name": "Pub Import Api Get Imported Ticket",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "import",
+                "tickets",
+                ":ticketExternalId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "ticketExternalId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "98bdcef7-9f95-45d8-b2a3-8ecfd4f886bc",
+              "name": "A successful response.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "import",
+                    "tickets",
+                    ":ticketExternalId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "ticketExternalId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"externalId\": \"string\",\n  \"internalId\": \"string\",\n  \"assigneeEmail\": \"string\",\n  \"assigneeName\": \"string\",\n  \"description\": \"string\",\n  \"subject\": \"string\",\n  \"created\": \"string\",\n  \"updated\": \"string\",\n  \"imported\": \"string\",\n  \"status\": \"string\",\n  \"customerName\": \"string\",\n  \"customerEmail\": \"string\",\n  \"comments\": [\n    {\n      \"externalId\": \"string\",\n      \"internalId\": \"string\",\n      \"authorName\": \"string\",\n      \"authorEmail\": \"string\",\n      \"public\": true,\n      \"comment\": \"string\",\n      \"created\": \"string\",\n      \"updated\": \"string\",\n      \"imported\": \"string\",\n      \"recordingUrl\": \"string\",\n      \"attachmentUrl\": \"string\",\n      \"attachmentName\": \"string\",\n      \"callDuration\": \"string\"\n    },\n    {\n      \"externalId\": \"string\",\n      \"internalId\": \"string\",\n      \"authorName\": \"string\",\n      \"authorEmail\": \"string\",\n      \"public\": true,\n      \"comment\": \"string\",\n      \"created\": \"string\",\n      \"updated\": \"string\",\n      \"imported\": \"string\",\n      \"recordingUrl\": \"string\",\n      \"attachmentUrl\": \"string\",\n      \"attachmentName\": \"string\",\n      \"callDuration\": \"string\"\n    }\n  ],\n  \"ticketFields\": [\n    {\n      \"id\": \"<string>\",\n      \"label\": \"<string>\",\n      \"updated\": \"<string>\",\n      \"values\": [\n        {\n          \"label\": \"string\",\n          \"value\": \"string\"\n        },\n        {\n          \"label\": \"string\",\n          \"value\": \"string\"\n        }\n      ]\n    },\n    {\n      \"id\": \"<string>\",\n      \"label\": \"<string>\",\n      \"updated\": \"<string>\",\n      \"values\": [\n        {\n          \"label\": \"string\",\n          \"value\": \"string\"\n        },\n        {\n          \"label\": \"string\",\n          \"value\": \"string\"\n        }\n      ]\n    }\n  ],\n  \"url\": \"string\",\n  \"tags\": [\n    \"string\",\n    \"string\"\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "7e83c035-b22a-438d-89e0-76f7535a391f",
+              "name": "An unexpected error response.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "import",
+                    "tickets",
+                    ":ticketExternalId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "ticketExternalId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 5472,\n  \"message\": \"string\",\n  \"details\": [\n    {\n      \"@type\": \"string\"\n    },\n    {\n      \"@type\": \"string\",\n      \"key_0\": {},\n      \"key_1\": {},\n      \"key_2\": {}\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "939f44ff-9ec2-433d-932b-d3ce51283c42",
+          "name": "Pub Import Api Import Users",
+          "request": {
+            "name": "Pub Import Api Import Users",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "import",
+                "users"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"data\": [\n    {\n      \"userEmail\": \"<string>\",\n      \"userName\": \"<string>\"\n    },\n    {\n      \"userEmail\": \"<string>\",\n      \"userName\": \"<string>\"\n    }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "6b095c1f-0bd4-4e00-bbba-ad0c6512dd80",
+              "name": "A successful response.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "import",
+                    "users"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"data\": [\n    {\n      \"userEmail\": \"<string>\",\n      \"userName\": \"<string>\"\n    },\n    {\n      \"userEmail\": \"<string>\",\n      \"userName\": \"<string>\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "1ac280a3-61fd-4208-9f01-ed58f75bf5a2",
+              "name": "An unexpected error response.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "import",
+                    "users"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"data\": [\n    {\n      \"userEmail\": \"<string>\",\n      \"userName\": \"<string>\"\n    },\n    {\n      \"userEmail\": \"<string>\",\n      \"userName\": \"<string>\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 5472,\n  \"message\": \"string\",\n  \"details\": [\n    {\n      \"@type\": \"string\"\n    },\n    {\n      \"@type\": \"string\",\n      \"key_0\": {},\n      \"key_1\": {},\n      \"key_2\": {}\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "//yoursubdomain.zendesk.com/qa",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "Authorization"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "6aa9f7b1-f913-4e78-8223-7ac247552e2b",
+    "name": "Public Export PubImportApi API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Export data from Zendesk QA.\n\n### Rate Limits:\n\n- API request limit: **1,500 requests per minute per IP**",
+      "type": "text/plain"
+    }
+  }
+}
