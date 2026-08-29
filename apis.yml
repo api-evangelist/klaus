@@ -12,6 +12,18 @@ description: 'Klaus is an AI-powered conversation review and quality assurance (
   as Swagger 2.0 specifications at pub.klausapp.com and authenticated with a bearer API token
   issued from a Zendesk QA custom integration.'
 url: https://raw.githubusercontent.com/api-evangelist/klaus/refs/heads/main/apis.yml
+deliveryModel:
+  model: saas
+  open_source: false
+  commercial: true
+  callable_host: true
+  label: Hosted service · you call their endpoint
+  confidence: high
+  source:
+  - openapi
+  - pricing
+  generated: '2026-08-28'
+  method: derived
 accessModel:
   pricing: unknown
   onboarding: self-serve
