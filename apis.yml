@@ -113,6 +113,9 @@ maintainers:
 - FN: APIs.json
   email: info@apis.io
 common:
+- type: CapabilityMap
+  url: capabilities/klaus-capability-edges.yml
+  name: Klaus Business Capability Map
 - type: Overlay
   url: overlays/klaus-public-export-api-overlay.yaml
 - type: Website
