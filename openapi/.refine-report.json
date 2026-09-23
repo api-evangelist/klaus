@@ -1,16 +1,24 @@
 {
   "provider": "klaus",
   "sources": [
-    "klaus-pubimportapi-api-openapi.yml",
-    "klaus-publicexportapi-api-openapi.yml"
+    "_original/klaus-public-export-api-openapi-original.json",
+    "_original/klaus-public-import-api-openapi-original.json"
   ],
   "outputs": [
-    "klaus-pubimportapi-api-openapi.yml",
-    "klaus-publicexportapi-api-openapi.yml"
+    "klaus-publicexportapi-api-openapi.yml",
+    "klaus-pubimportapi-api-openapi.yml"
   ],
   "archived": [],
   "errors": [],
   "warnings": [],
-  "notes": [],
-  "skipped": []
+  "notes": [
+    "sourced from openapi/_original/ (2 archived document(s)); previously refined output at the top level was skipped rather than re-split",
+    "klaus-public-export-api-openapi-original.json: upgraded swagger 2.0 -> OpenAPI 3.2.0",
+    "klaus-public-import-api-openapi-original.json: upgraded swagger 2.0 -> OpenAPI 3.2.0",
+    "apis.yml register: already-registered"
+  ],
+  "skipped": [
+    "klaus-pubimportapi-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "klaus-publicexportapi-api-openapi.yml: previously refined output, superseded by openapi/_original/"
+  ]
 }
