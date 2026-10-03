@@ -717,45 +717,130 @@ components:
           type: string
         name:
           type: string
-    protoExportAPIDisputesResponse:
+    AdvancedScorecardMultiTierRootCause:
       type: object
       properties:
-        disputes:
+        tiers:
           type: array
           items:
             type: object
-            $ref: '#/components/schemas/protoExportAPIDispute'
-        pagination:
-          $ref: '#/components/schemas/protoPagination'
-    protoQuizFieldType:
-      type: string
-      enum:
-      - MULTIPLE_CHOICE
-      default: MULTIPLE_CHOICE
-    AdvancedScorecardRootCause:
+            $ref: '#/components/schemas/AdvancedScorecardRootCauseTierNode'
+        looseRootCauses:
+          type: array
+          items:
+            type: object
+            $ref: '#/components/schemas/AdvancedScorecardScorecardRootCause'
+    protoScorecard:
       type: object
       properties:
         id:
           type: string
           format: int64
-        cause:
+        name:
           type: string
-        createdAt:
-          type: string
-          format: date-time
-        updatedAt:
-          type: string
-          format: date-time
-    protoCSATResponse:
+    protoAutoQARatingsExportResponse:
       type: object
       properties:
-        tickets:
+        rows:
           type: array
           items:
             type: object
-            $ref: '#/components/schemas/protoTicketCSAT'
+            $ref: '#/components/schemas/protoAutoQARatingRow'
         pagination:
           $ref: '#/components/schemas/protoPagination'
+        nextCursor:
+          type: string
+    AdvancedScorecardScorecardRatingCategory:
+      type: object
+      properties:
+        name:
+          type: string
+        description:
+          type: string
+        type:
+          type: string
+        ratingCategoryId:
+          type: string
+          format: int64
+        scale:
+          type: string
+        weight:
+          type: integer
+          format: int32
+        critical:
+          type: boolean
+        reviewCritical:
+          type: boolean
+        groupCritical:
+          type: boolean
+        position:
+          type: integer
+          format: int32
+        skippable:
+          type: boolean
+        conditions:
+          type: array
+          items:
+            type: object
+            $ref: '#/components/schemas/AdvancedScorecardScorecardRatingCategoryCondition'
+        rootCauses:
+          $ref: '#/components/schemas/AdvancedScorecardRootCauses'
+        autoQaCategory:
+          type: string
+        autoQaCustomCategoryTemplateId:
+          type: string
+        status:
+          type: string
+        autoQaApplicabilities:
+          type: array
+          items:
+            type: string
+        autoQaPromptCategoryTemplateId:
+          type: string
+        ratings:
+          type: array
+          items:
+            type: object
+            $ref: '#/components/schemas/AdvancedScorecardScorecardRatingCategoryRating'
+        promptAnomalies:
+          $ref: '#/components/schemas/protoPromptAnomalies'
+    protoConversationSearchResponse:
+      type: object
+      properties:
+        conversations:
+          type: array
+          items:
+            type: object
+            $ref: '#/components/schemas/protoConversationSearchData'
+    protoConversationSearchData:
+      type: object
+      properties:
+        externalId:
+          type: string
+        externalLink:
+          type: string
+    protoExportAPICalibrationSessionsResponse:
+      type: object
+      properties:
+        calibrationSessions:
+          type: array
+          items:
+            type: object
+            $ref: '#/components/schemas/protoExportAPICalibrationSession'
+        pagination:
+          $ref: '#/components/schemas/protoPagination'
+    AdvancedScorecardRootCauses:
+      type: object
+      properties:
+        multipleRequireReasons:
+          type: boolean
+        freeTextAllowed:
+          type: boolean
+        ratings:
+          type: array
+          items:
+            type: object
+            $ref: '#/components/schemas/AdvancedScorecardRating'
     protoQuizLeaderboardResponse:
       type: object
       properties:
@@ -764,56 +849,155 @@ components:
           items:
             type: object
             $ref: '#/components/schemas/protoQuizLeaderboardUser'
-    protoStatus:
-      type: string
-      enum:
-      - DRAFT
-      - PUBLISHED
-      - DELETED
-      - ARCHIVED
-      default: DRAFT
-    AdvancedScorecardScorecardRatingCategoryRating:
+    protoQuizAndResponse:
       type: object
       properties:
-        rating:
+        quizId:
           type: string
           format: int64
+        responseId:
+          type: string
+          format: int64
+        name:
+          type: string
         description:
           type: string
-    protoExportAPIUser:
+        createdAt:
+          type: string
+          format: date-time
+        userId:
+          type: string
+          format: int64
+        userName:
+          type: string
+        userAvatar:
+          type: string
+        fields:
+          type: array
+          items:
+            type: object
+            $ref: '#/components/schemas/protoQuizResponseField'
+    protoExportAPICalibrationSession:
+      type: object
+      properties:
+        id:
+          type: string
+        createdBy:
+          type: string
+          format: int64
+        createdAt:
+          type: string
+        title:
+          type: string
+        dueAt:
+          type: string
+        updatedAt:
+          type: string
+        conversations:
+          type: array
+          items:
+            type: object
+            $ref: '#/components/schemas/protoExportAPICalibrationConversation'
+    protoWorkspaceScorecardsResponse:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            type: object
+            $ref: '#/components/schemas/AdvancedScorecardWorkspaceScorecard'
+        total:
+          type: integer
+          format: int32
+    protoExportAPIComment:
       type: object
       properties:
         id:
           type: string
           format: int64
-        name:
+        owner:
+          $ref: '#/components/schemas/protoReviewsUser'
+        comment:
           type: string
-        email:
+        created:
           type: string
-    AdvancedScorecardRootCauseTierNode:
+        updated:
+          type: string
+        thread:
+          type: array
+          items:
+            type: object
+            $ref: '#/components/schemas/protoExportAPIComment'
+        tags:
+          type: array
+          items:
+            type: object
+            $ref: '#/components/schemas/protoExportAPICommentTag'
+        createdISO:
+          type: string
+        updatedISO:
+          type: string
+    protoAccountWorkspacesResponse:
+      type: object
+      properties:
+        workspaces:
+          type: array
+          items:
+            type: object
+            $ref: '#/components/schemas/protoWorkspaceIdName'
+    protoExportAPICalibrationReview:
       type: object
       properties:
         id:
           type: string
-        name:
-          type: string
-        rootCauseCount:
-          type: string
-          format: int64
-        canAddSubtiers:
-          type: boolean
-        canAddRootCauses:
-          type: boolean
-        subtiers:
+        reviewer:
+          $ref: '#/components/schemas/protoReviewsUser'
+        reviewee:
+          $ref: '#/components/schemas/protoReviewsUser'
+        score:
+          type: number
+          format: double
+        ratings:
           type: array
           items:
             type: object
-            $ref: '#/components/schemas/AdvancedScorecardRootCauseTierNode'
-        rootCauses:
+            $ref: '#/components/schemas/protoReviewsRating'
+        comment:
+          type: string
+        thread:
           type: array
           items:
             type: object
-            $ref: '#/components/schemas/AdvancedScorecardRootCause'
+            $ref: '#/components/schemas/protoExportAPICalibrationComment'
+        tags:
+          type: array
+          items:
+            type: object
+            $ref: '#/components/schemas/protoExportAPICommentTag'
+        createdAt:
+          type: string
+        updatedAt:
+          type: string
+        received:
+          type: boolean
+        scorecard:
+          $ref: '#/components/schemas/protoScorecard'
+        createdISO:
+          type: string
+        updatedISO:
+          type: string
+    protoAutoQAReviewsExportResponse:
+      type: object
+      properties:
+        rows:
+          type: array
+          items:
+            type: object
+            $ref: '#/components/schemas/protoAutoQAReviewRow'
+        pagination:
+          $ref: '#/components/schemas/protoPagination'
+        nextCursor:
+          type: string
     protoQuizListItem:
       type: object
       properties:
@@ -848,6 +1032,504 @@ components:
           items:
             type: string
             format: int64
+    AdvancedScorecardScorecardRootCause:
+      type: object
+      properties:
+        id:
+          type: string
+          format: int64
+        name:
+          type: string
+    protoExternalField:
+      type: object
+      properties:
+        externalId:
+          type: string
+        name:
+          type: string
+        value:
+          type: string
+    protoQuizFieldType:
+      type: string
+      enum:
+      - MULTIPLE_CHOICE
+      default: MULTIPLE_CHOICE
+    protoCSATResponse:
+      type: object
+      properties:
+        tickets:
+          type: array
+          items:
+            type: object
+            $ref: '#/components/schemas/protoTicketCSAT'
+        pagination:
+          $ref: '#/components/schemas/protoPagination'
+    protoTicketCSAT:
+      type: object
+      properties:
+        externalTicketId:
+          type: string
+        conversationUrl:
+          type: string
+        ticketCreatedAt:
+          type: string
+          format: date-time
+        csatCreatedAt:
+          type: string
+          format: date-time
+        csatAnsweredAt:
+          type: string
+          format: date-time
+        agentName:
+          type: string
+        agentEmail:
+          type: string
+        customerName:
+          type: string
+        customerEmail:
+          type: string
+        csatScore:
+          type: string
+          format: int64
+        csatRawScore:
+          type: string
+        csatComment:
+          type: string
+        csatReason:
+          type: string
+        conversationChannel:
+          type: string
+        conversationSource:
+          type: string
+        commentSize:
+          type: string
+        commentWordCount:
+          type: string
+        language:
+          type: string
+        csatDrivers:
+          type: array
+          items:
+            type: string
+        helpdeskTags:
+          type: array
+          items:
+            type: string
+    protoQuizResponseField:
+      type: object
+      properties:
+        id:
+          type: string
+          format: int64
+        text:
+          type: string
+        images:
+          type: array
+          items:
+            type: string
+        properties:
+          type: array
+          items:
+            type: object
+            $ref: '#/components/schemas/protoQuizFieldProperty'
+        type:
+          $ref: '#/components/schemas/protoQuizFieldType'
+        position:
+          type: string
+          format: int64
+        options:
+          type: array
+          items:
+            type: object
+            $ref: '#/components/schemas/protoQuizResponseOption'
+        answeredCorrectly:
+          type: boolean
+    protoExportAPIDispute:
+      type: object
+      properties:
+        account:
+          type: string
+          format: int64
+        workspace:
+          type: string
+          format: int64
+        conversationId:
+          type: string
+        connectionId:
+          type: string
+          format: int64
+        reviewId:
+          type: string
+          format: int64
+        disputeId:
+          type: string
+        type:
+          type: string
+        createdAt:
+          type: string
+          format: date-time
+        createdBy:
+          $ref: '#/components/schemas/protoUserData'
+        assignee:
+          $ref: '#/components/schemas/protoUserData'
+        status:
+          type: string
+        resolutionTime:
+          type: string
+          format: int64
+        categories:
+          type: array
+          items:
+            type: object
+            $ref: '#/components/schemas/protoExportAPIDisputeCategory'
+        comment:
+          $ref: '#/components/schemas/protoExportAPIDisputeComment'
+        resolvedAt:
+          type: string
+          format: date-time
+        rejectedBy:
+          $ref: '#/components/schemas/protoUserData'
+    protoQuizResponseItems:
+      type: object
+      properties:
+        responses:
+          type: array
+          items:
+            type: object
+            $ref: '#/components/schemas/protoQuizResponseItem'
+    protoExportAPICalibrationComment:
+      type: object
+      properties:
+        id:
+          type: string
+        owner:
+          $ref: '#/components/schemas/protoReviewsUser'
+        comment:
+          type: string
+        createdAt:
+          type: string
+        updatedAt:
+          type: string
+        createdISO:
+          type: string
+        updatedISO:
+          type: string
+    protoQuizLeaderboardUser:
+      type: object
+      properties:
+        id:
+          type: string
+          format: int64
+        name:
+          type: string
+        avatar:
+          type: string
+        quizzesTaken:
+          type: string
+          format: int64
+        ranking:
+          type: string
+          format: int64
+        averageScorePercentage:
+          type: string
+          format: int64
+        requesterCanManageAnyQuiz:
+          type: boolean
+    protoExportAPIReview:
+      type: object
+      properties:
+        id:
+          type: string
+          format: int64
+        reviewer:
+          $ref: '#/components/schemas/protoReviewsUser'
+        reviewee:
+          $ref: '#/components/schemas/protoReviewsUser'
+        score:
+          type: number
+          format: double
+        ratings:
+          type: array
+          items:
+            type: object
+            $ref: '#/components/schemas/protoReviewsRating'
+        comment:
+          type: string
+        thread:
+          type: array
+          items:
+            type: object
+            $ref: '#/components/schemas/protoExportAPIComment'
+        tags:
+          type: array
+          items:
+            type: object
+            $ref: '#/components/schemas/protoExportAPICommentTag'
+        created:
+          type: string
+        updated:
+          type: string
+        received:
+          type: boolean
+        reviewTime:
+          type: string
+          format: int64
+        scorecard:
+          $ref: '#/components/schemas/protoScorecard'
+        createdISO:
+          type: string
+        updatedISO:
+          type: string
+        pauseTime:
+          type: string
+          format: int64
+        timeTrackingPeriods:
+          type: array
+          items:
+            type: object
+            $ref: '#/components/schemas/protoTimeTrackingPeriod'
+    AdvancedScorecardScorecardRatingCategoryCondition:
+      type: object
+      properties:
+        condition:
+          type: string
+        type:
+          type: string
+        values:
+          type: array
+          items:
+            type: string
+    protoReviewsUser:
+      type: object
+      properties:
+        email:
+          type: string
+        name:
+          type: string
+        avatar:
+          type: string
+        groups:
+          type: array
+          items:
+            type: object
+            $ref: '#/components/schemas/protoReviewsGroup'
+    protoExportAPIDisputeCategory:
+      type: object
+      properties:
+        id:
+          type: string
+          format: int64
+        expectedRating:
+          type: integer
+          format: int32
+        comment:
+          $ref: '#/components/schemas/protoExportAPIDisputeComment'
+        rootCause:
+          type: array
+          items:
+            type: string
+    protoAutoQAReviewRow:
+      type: object
+      properties:
+        autoqaReviewId:
+          type: string
+        accountId:
+          type: string
+          format: int64
+        workspaceId:
+          type: string
+          format: int64
+        workspaceName:
+          type: string
+        connectionId:
+          type: string
+          format: int64
+        externalTicketId:
+          type: string
+        conversationCreatedAt:
+          type: string
+          format: date-time
+        createdAt:
+          type: string
+          format: date-time
+        updatedAt:
+          type: string
+          format: date-time
+        isBot:
+          type: boolean
+        revieweeExternalId:
+          type: string
+        revieweeInternalId:
+          type: string
+        revieweeName:
+          type: string
+        revieweeEmail:
+          type: string
+        conversationChannel:
+          type: string
+        language:
+          type: string
+        appConversationLink:
+          type: string
+        externalConversationLink:
+          type: string
+        paymentId:
+          type: string
+          format: int64
+    AdvancedScorecardRating:
+      type: object
+      properties:
+        rating:
+          type: integer
+          format: int32
+        freeTextAllowed:
+          type: boolean
+        rootCauses:
+          type: array
+          items:
+            type: object
+            $ref: '#/components/schemas/AdvancedScorecardScorecardRootCause'
+        tiers:
+          type: array
+          items:
+            type: object
+            $ref: '#/components/schemas/AdvancedScorecardScorecardRootCauseTier'
+        multiTierRootCause:
+          $ref: '#/components/schemas/AdvancedScorecardMultiTierRootCause'
+    AdvancedScorecardRootCause:
+      type: object
+      properties:
+        id:
+          type: string
+          format: int64
+        cause:
+          type: string
+        createdAt:
+          type: string
+          format: date-time
+        updatedAt:
+          type: string
+          format: date-time
+    protoExportAPIUser:
+      type: object
+      properties:
+        id:
+          type: string
+          format: int64
+        name:
+          type: string
+        email:
+          type: string
+    protoExportAPIReviewsResponse:
+      type: object
+      properties:
+        conversations:
+          type: array
+          items:
+            type: object
+            $ref: '#/components/schemas/protoExportAPIConversation'
+        pagination:
+          $ref: '#/components/schemas/protoPagination'
+    protoExportAPIDisputeComment:
+      type: object
+      properties:
+        comment:
+          type: string
+        commentTags:
+          type: array
+          items:
+            type: object
+            $ref: '#/components/schemas/protoExportAPITagRequest'
+        owner:
+          $ref: '#/components/schemas/protoUserData'
+        created:
+          type: string
+          format: date-time
+        updated:
+          type: string
+          format: date-time
+        thread:
+          type: array
+          items:
+            type: object
+            $ref: '#/components/schemas/protoExportAPIDisputeComment'
+        Id:
+          type: string
+          format: int64
+    protoReviewsRating:
+      type: object
+      properties:
+        categoryId:
+          type: string
+          format: int64
+        categoryName:
+          type: string
+        score:
+          type: number
+          format: double
+        weight:
+          type: number
+          format: double
+        critical:
+          type: boolean
+        cause:
+          type: string
+        causes:
+          type: array
+          items:
+            type: string
+        groupName:
+          type: string
+        groupId:
+          type: string
+          format: int64
+    protoExportAPICommentTag:
+      type: object
+      properties:
+        tag:
+          type: string
+        user:
+          $ref: '#/components/schemas/protoReviewsUser'
+    protoExportAPIUsersResponse:
+      type: object
+      properties:
+        users:
+          type: array
+          items:
+            type: object
+            $ref: '#/components/schemas/protoExportAPIUser'
+    protoExportAPITagRequest:
+      type: object
+      properties:
+        tag:
+          type: string
+        userId:
+          type: string
+          format: int64
+    AdvancedScorecardRootCauseTierNode:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        rootCauseCount:
+          type: string
+          format: int64
+        canAddSubtiers:
+          type: boolean
+        canAddRootCauses:
+          type: boolean
+        subtiers:
+          type: array
+          items:
+            type: object
+            $ref: '#/components/schemas/AdvancedScorecardRootCauseTierNode'
+        rootCauses:
+          type: array
+          items:
+            type: object
+            $ref: '#/components/schemas/AdvancedScorecardRootCause'
     protoQuizFieldProperty:
       type: object
       properties:
@@ -893,47 +1575,105 @@ components:
         averageScorePercentage:
           type: string
           format: int64
-    protoQuizLeaderboardUser:
+    protoExportAPIConversation:
+      type: object
+      properties:
+        externalId:
+          type: string
+        url:
+          type: string
+        externalUrl:
+          type: string
+        lastUpdated:
+          type: string
+        reviews:
+          type: array
+          items:
+            type: object
+            $ref: '#/components/schemas/protoExportAPIReview'
+        comments:
+          type: array
+          items:
+            type: object
+            $ref: '#/components/schemas/protoExportAPIComment'
+        workspaceId:
+          type: string
+          format: int64
+        sourceType:
+          type: string
+        createdAt:
+          type: string
+        lastUpdatedISO:
+          type: string
+        createdAtISO:
+          type: string
+        externalFields:
+          type: array
+          items:
+            type: object
+            $ref: '#/components/schemas/protoExternalField'
+        workspaceName:
+          type: string
+    protoTimeTrackingPeriod:
+      type: object
+      properties:
+        type:
+          type: string
+        duration:
+          type: string
+          format: int64
+    protoQuizResponseItem:
+      type: object
+      properties:
+        responseId:
+          type: string
+          format: int64
+        userId:
+          type: string
+          format: int64
+        userName:
+          type: string
+        correctAnswerPercentage:
+          type: string
+          format: int64
+    protoPromptAnomalies:
+      type: object
+      properties:
+        highNaRate:
+          type: boolean
+    protobufAny:
+      type: object
+      properties:
+        '@type':
+          type: string
+          description: "A URL/resource name that uniquely identifies the type of the serialized\nprotocol buffer message. This string must contain at least\none \"/\" character. The last segment of the URL's path must represent\nthe fully qualified name of the type (as in\n`path/google.protobuf.Duration`). The name should be in a canonical form\n(e.g., leading \".\" is not accepted).\n\nIn practice, teams usually precompile into the binary all types that they\nexpect it to use in the context of Any. However, for URLs which use the\nscheme `http`, `https`, or no scheme, one can optionally set up a type\nserver that maps type URLs to message definitions as follows:\n\n* If no scheme is provided, `https` is assumed.\n* An HTTP GET on the URL must yield a [google.protobuf.Type][]\n  value in binary format, or produce an error.\n* Applications are allowed to cache lookup results based on the\n  URL, or have them precompiled into a binary to avoid any\n  lookup. Therefore, binary compatibility needs to be preserved\n  on changes to types. (Use versioned type names to manage\n  breaking changes.)\n\nNote: this functionality is not currently available in the official\nprotobuf release, and it is not used for type URLs beginning with\ntype.googleapis.com. As of May 2023, there are no widely used type server\nimplementations and no plans to implement one.\n\nSchemes other than `http`, `https` (or the empty scheme) might be\nused with implementation specific semantics."
+      additionalProperties: {}
+      description: "`Any` contains an arbitrary serialized protocol buffer message along with a\nURL that describes the type of the serialized message.\n\nProtobuf library provides support to pack/unpack Any values in the form\nof utility functions or additional generated methods of the Any type.\n\nExample 1: Pack and unpack a message in C++.\n\n    Foo foo = ...;\n    Any any;\n    any.PackFrom(foo);\n    ...\n    if (any.UnpackTo(&foo)) {\n      ...\n    }\n\nExample 2: Pack and unpack a message in Java.\n\n    Foo foo = ...;\n    Any any = Any.pack(foo);\n    ...\n    if (any.is(Foo.class)) {\n      foo = any.unpack(Foo.class);\n    }\n    // or ...\n    if (any.isSameTypeAs(Foo.getDefaultInstance())) {\n      foo = any.unpack(Foo.getDefaultInstance());\n    }\n\n Example 3: Pack and unpack a message in Python.\n\n    foo = Foo(...)\n    any = Any()\n    any.Pack(foo)\n    ...\n    if any.Is(Foo.DESCRIPTOR):\n      any.Unpack(foo)\n      ...\n\n Example 4: Pack and unpack a message in Go\n\n     foo := &pb.Foo{...}\n     any, err := anypb.New(foo)\n     if err != nil {\n       ...\n     }\n     ...\n     foo := &pb.Foo{}\n     if err := any.UnmarshalTo(foo); err != nil {\n       ...\n     }\n\nThe pack methods provided by protobuf library will by default use\n'type.googleapis.com/full.type.name' as the type URL and the unpack\nmethods only use the fully qualified type name after the last '/'\nin the type URL, for example \"foo.bar.com/x/y.z\" will yield type\nname \"y.z\".\n\nJSON\n====\nThe JSON representation of an `Any` value uses the regular\nrepresentation of the deserialized, embedded message, with an\nadditional field `@type` which contains the type URL. Example:\n\n    package google.profile;\n    message Person {\n      string first_name = 1;\n      string last_name = 2;\n    }\n\n    {\n      \"@type\": \"type.googleapis.com/google.profile.Person\",\n      \"firstName\": <string>,\n      \"lastName\": <string>\n    }\n\nIf the embedded message type is well-known and has a custom JSON\nrepresentation, that representation will be embedded adding a field\n`value` which holds the custom JSON in addition to the `@type`\nfield. Example (for message [google.protobuf.Duration][]):\n\n    {\n      \"@type\": \"type.googleapis.com/google.protobuf.Duration\",\n      \"value\": \"1.212s\"\n    }"
+    protoExportAPIDisputesResponse:
+      type: object
+      properties:
+        disputes:
+          type: array
+          items:
+            type: object
+            $ref: '#/components/schemas/protoExportAPIDispute'
+        pagination:
+          $ref: '#/components/schemas/protoPagination'
+    protoQuizResponseOption:
       type: object
       properties:
         id:
           type: string
           format: int64
-        name:
+        label:
           type: string
-        avatar:
-          type: string
-        quizzesTaken:
-          type: string
-          format: int64
-        ranking:
-          type: string
-          format: int64
-        averageScorePercentage:
-          type: string
-          format: int64
-        requesterCanManageAnyQuiz:
+        correct:
           type: boolean
-    AdvancedScorecardRating:
-      type: object
-      properties:
-        rating:
-          type: integer
-          format: int32
-        freeTextAllowed:
+        position:
+          type: string
+          format: int64
+        selected:
           type: boolean
-        rootCauses:
-          type: array
-          items:
-            type: object
-            $ref: '#/components/schemas/AdvancedScorecardScorecardRootCause'
-        tiers:
-          type: array
-          items:
-            type: object
-            $ref: '#/components/schemas/AdvancedScorecardScorecardRootCauseTier'
-        multiTierRootCause:
-          $ref: '#/components/schemas/AdvancedScorecardMultiTierRootCause'
     protoUserData:
       type: object
       properties:
@@ -944,6 +1684,84 @@ components:
           type: string
         avatar:
           type: string
+    protoQuizFieldWithStatistics:
+      type: object
+      properties:
+        id:
+          type: string
+          format: int64
+        text:
+          type: string
+        images:
+          type: array
+          items:
+            type: string
+        properties:
+          type: array
+          items:
+            type: object
+            $ref: '#/components/schemas/protoQuizFieldProperty'
+        type:
+          $ref: '#/components/schemas/protoQuizFieldType'
+        position:
+          type: string
+          format: int64
+        options:
+          type: array
+          items:
+            type: object
+            $ref: '#/components/schemas/protoQuizFieldOptionWithStatistics'
+    AdvancedScorecardWorkspaceScorecard:
+      type: object
+      properties:
+        id:
+          type: string
+          format: int64
+        name:
+          type: string
+        categories:
+          type: array
+          items:
+            type: object
+            $ref: '#/components/schemas/AdvancedScorecardScorecardRatingCategory'
+        groups:
+          type: array
+          items:
+            type: object
+            $ref: '#/components/schemas/AdvancedScorecardScorecardRatingCategoryGroup'
+        createdAt:
+          type: string
+          format: date-time
+        updatedAt:
+          type: string
+          format: date-time
+    protoQuizListResponse:
+      type: object
+      properties:
+        quizzes:
+          type: array
+          items:
+            type: object
+            $ref: '#/components/schemas/protoQuizListItem'
+    protoQuizFieldOptionWithStatistics:
+      type: object
+      properties:
+        id:
+          type: string
+          format: int64
+        label:
+          type: string
+        correct:
+          type: boolean
+        position:
+          type: string
+          format: int64
+        selectedCount:
+          type: string
+          format: int64
+        percentageSelected:
+          type: string
+          format: int64
     protoAutoQARatingRow:
       type: object
       properties:
@@ -1033,304 +1851,13 @@ components:
         paymentId:
           type: string
           format: int64
-    AdvancedScorecardRootCauses:
-      type: object
-      properties:
-        multipleRequireReasons:
-          type: boolean
-        freeTextAllowed:
-          type: boolean
-        ratings:
-          type: array
-          items:
-            type: object
-            $ref: '#/components/schemas/AdvancedScorecardRating'
-    protoExportAPITagRequest:
-      type: object
-      properties:
-        tag:
-          type: string
-        userId:
-          type: string
-          format: int64
-    protoExportAPICalibrationSessionsResponse:
-      type: object
-      properties:
-        calibrationSessions:
-          type: array
-          items:
-            type: object
-            $ref: '#/components/schemas/protoExportAPICalibrationSession'
-        pagination:
-          $ref: '#/components/schemas/protoPagination'
-    protoQuizListResponse:
-      type: object
-      properties:
-        quizzes:
-          type: array
-          items:
-            type: object
-            $ref: '#/components/schemas/protoQuizListItem'
-    protobufAny:
-      type: object
-      properties:
-        '@type':
-          type: string
-          description: "A URL/resource name that uniquely identifies the type of the serialized\nprotocol buffer message. This string must contain at least\none \"/\" character. The last segment of the URL's path must represent\nthe fully qualified name of the type (as in\n`path/google.protobuf.Duration`). The name should be in a canonical form\n(e.g., leading \".\" is not accepted).\n\nIn practice, teams usually precompile into the binary all types that they\nexpect it to use in the context of Any. However, for URLs which use the\nscheme `http`, `https`, or no scheme, one can optionally set up a type\nserver that maps type URLs to message definitions as follows:\n\n* If no scheme is provided, `https` is assumed.\n* An HTTP GET on the URL must yield a [google.protobuf.Type][]\n  value in binary format, or produce an error.\n* Applications are allowed to cache lookup results based on the\n  URL, or have them precompiled into a binary to avoid any\n  lookup. Therefore, binary compatibility needs to be preserved\n  on changes to types. (Use versioned type names to manage\n  breaking changes.)\n\nNote: this functionality is not currently available in the official\nprotobuf release, and it is not used for type URLs beginning with\ntype.googleapis.com. As of May 2023, there are no widely used type server\nimplementations and no plans to implement one.\n\nSchemes other than `http`, `https` (or the empty scheme) might be\nused with implementation specific semantics."
-      additionalProperties: {}
-      description: "`Any` contains an arbitrary serialized protocol buffer message along with a\nURL that describes the type of the serialized message.\n\nProtobuf library provides support to pack/unpack Any values in the form\nof utility functions or additional generated methods of the Any type.\n\nExample 1: Pack and unpack a message in C++.\n\n    Foo foo = ...;\n    Any any;\n    any.PackFrom(foo);\n    ...\n    if (any.UnpackTo(&foo)) {\n      ...\n    }\n\nExample 2: Pack and unpack a message in Java.\n\n    Foo foo = ...;\n    Any any = Any.pack(foo);\n    ...\n    if (any.is(Foo.class)) {\n      foo = any.unpack(Foo.class);\n    }\n    // or ...\n    if (any.isSameTypeAs(Foo.getDefaultInstance())) {\n      foo = any.unpack(Foo.getDefaultInstance());\n    }\n\n Example 3: Pack and unpack a message in Python.\n\n    foo = Foo(...)\n    any = Any()\n    any.Pack(foo)\n    ...\n    if any.Is(Foo.DESCRIPTOR):\n      any.Unpack(foo)\n      ...\n\n Example 4: Pack and unpack a message in Go\n\n     foo := &pb.Foo{...}\n     any, err := anypb.New(foo)\n     if err != nil {\n       ...\n     }\n     ...\n     foo := &pb.Foo{}\n     if err := any.UnmarshalTo(foo); err != nil {\n       ...\n     }\n\nThe pack methods provided by protobuf library will by default use\n'type.googleapis.com/full.type.name' as the type URL and the unpack\nmethods only use the fully qualified type name after the last '/'\nin the type URL, for example \"foo.bar.com/x/y.z\" will yield type\nname \"y.z\".\n\nJSON\n====\nThe JSON representation of an `Any` value uses the regular\nrepresentation of the deserialized, embedded message, with an\nadditional field `@type` which contains the type URL. Example:\n\n    package google.profile;\n    message Person {\n      string first_name = 1;\n      string last_name = 2;\n    }\n\n    {\n      \"@type\": \"type.googleapis.com/google.profile.Person\",\n      \"firstName\": <string>,\n      \"lastName\": <string>\n    }\n\nIf the embedded message type is well-known and has a custom JSON\nrepresentation, that representation will be embedded adding a field\n`value` which holds the custom JSON in addition to the `@type`\nfield. Example (for message [google.protobuf.Duration][]):\n\n    {\n      \"@type\": \"type.googleapis.com/google.protobuf.Duration\",\n      \"value\": \"1.212s\"\n    }"
-    protoReviewsRating:
-      type: object
-      properties:
-        categoryId:
-          type: string
-          format: int64
-        categoryName:
-          type: string
-        score:
-          type: number
-          format: double
-        weight:
-          type: number
-          format: double
-        critical:
-          type: boolean
-        cause:
-          type: string
-        causes:
-          type: array
-          items:
-            type: string
-        groupName:
-          type: string
-        groupId:
-          type: string
-          format: int64
-    protoExportAPICommentTag:
-      type: object
-      properties:
-        tag:
-          type: string
-        user:
-          $ref: '#/components/schemas/protoReviewsUser'
-    protoExportAPIDispute:
-      type: object
-      properties:
-        account:
-          type: string
-          format: int64
-        workspace:
-          type: string
-          format: int64
-        conversationId:
-          type: string
-        connectionId:
-          type: string
-          format: int64
-        reviewId:
-          type: string
-          format: int64
-        disputeId:
-          type: string
-        type:
-          type: string
-        createdAt:
-          type: string
-          format: date-time
-        createdBy:
-          $ref: '#/components/schemas/protoUserData'
-        assignee:
-          $ref: '#/components/schemas/protoUserData'
-        status:
-          type: string
-        resolutionTime:
-          type: string
-          format: int64
-        categories:
-          type: array
-          items:
-            type: object
-            $ref: '#/components/schemas/protoExportAPIDisputeCategory'
-        comment:
-          $ref: '#/components/schemas/protoExportAPIDisputeComment'
-        resolvedAt:
-          type: string
-          format: date-time
-        rejectedBy:
-          $ref: '#/components/schemas/protoUserData'
-    protoAutoQAReviewRow:
-      type: object
-      properties:
-        autoqaReviewId:
-          type: string
-        accountId:
-          type: string
-          format: int64
-        workspaceId:
-          type: string
-          format: int64
-        workspaceName:
-          type: string
-        connectionId:
-          type: string
-          format: int64
-        externalTicketId:
-          type: string
-        conversationCreatedAt:
-          type: string
-          format: date-time
-        createdAt:
-          type: string
-          format: date-time
-        updatedAt:
-          type: string
-          format: date-time
-        isBot:
-          type: boolean
-        revieweeExternalId:
-          type: string
-        revieweeInternalId:
-          type: string
-        revieweeName:
-          type: string
-        revieweeEmail:
-          type: string
-        conversationChannel:
-          type: string
-        language:
-          type: string
-        appConversationLink:
-          type: string
-        externalConversationLink:
-          type: string
-        paymentId:
-          type: string
-          format: int64
-    protoExportAPIDisputeCategory:
+    AdvancedScorecardScorecardRootCauseTier:
       type: object
       properties:
         id:
           type: string
-          format: int64
-        expectedRating:
-          type: integer
-          format: int32
-        comment:
-          $ref: '#/components/schemas/protoExportAPIDisputeComment'
-        rootCause:
-          type: array
-          items:
-            type: string
-    protoExportAPIConversation:
-      type: object
-      properties:
-        externalId:
-          type: string
-        url:
-          type: string
-        externalUrl:
-          type: string
-        lastUpdated:
-          type: string
-        reviews:
-          type: array
-          items:
-            type: object
-            $ref: '#/components/schemas/protoExportAPIReview'
-        comments:
-          type: array
-          items:
-            type: object
-            $ref: '#/components/schemas/protoExportAPIComment'
-        workspaceId:
-          type: string
-          format: int64
-        sourceType:
-          type: string
-        createdAt:
-          type: string
-        lastUpdatedISO:
-          type: string
-        createdAtISO:
-          type: string
-        externalFields:
-          type: array
-          items:
-            type: object
-            $ref: '#/components/schemas/protoExternalField'
-        workspaceName:
-          type: string
-    protoQuizAndResponse:
-      type: object
-      properties:
-        quizId:
-          type: string
-          format: int64
-        responseId:
-          type: string
-          format: int64
         name:
           type: string
-        description:
-          type: string
-        createdAt:
-          type: string
-          format: date-time
-        userId:
-          type: string
-          format: int64
-        userName:
-          type: string
-        userAvatar:
-          type: string
-        fields:
-          type: array
-          items:
-            type: object
-            $ref: '#/components/schemas/protoQuizResponseField'
-    protoQuizResponseItems:
-      type: object
-      properties:
-        responses:
-          type: array
-          items:
-            type: object
-            $ref: '#/components/schemas/protoQuizResponseItem'
-    protoConversationSearchRequest:
-      type: object
-      properties:
-        account:
-          type: string
-          format: int64
-        endUserEmail:
-          type: string
-    protoTimeTrackingPeriod:
-      type: object
-      properties:
-        type:
-          type: string
-        duration:
-          type: string
-          format: int64
-    protoQuizFieldOptionWithStatistics:
-      type: object
-      properties:
-        id:
-          type: string
-          format: int64
-        label:
-          type: string
-        correct:
-          type: boolean
-        position:
-          type: string
-          format: int64
-        selectedCount:
-          type: string
-          format: int64
-        percentageSelected:
-          type: string
-          format: int64
     protoWorkspaceIdName:
       type: object
       properties:
@@ -1339,171 +1866,33 @@ components:
           format: int64
         name:
           type: string
-    protoWorkspaceScorecardsResponse:
+    protoPagination:
       type: object
       properties:
-        data:
-          type: array
-          items:
-            type: object
-            $ref: '#/components/schemas/AdvancedScorecardWorkspaceScorecard'
+        page:
+          type: integer
+          format: int32
+        pageSize:
+          type: integer
+          format: int32
         total:
           type: integer
           format: int32
-    AdvancedScorecardScorecardRootCauseTier:
+    protoExportAPICalibrationConversation:
       type: object
       properties:
-        id:
-          type: string
-        name:
-          type: string
-    AdvancedScorecardMultiTierRootCause:
-      type: object
-      properties:
-        tiers:
-          type: array
-          items:
-            type: object
-            $ref: '#/components/schemas/AdvancedScorecardRootCauseTierNode'
-        looseRootCauses:
-          type: array
-          items:
-            type: object
-            $ref: '#/components/schemas/AdvancedScorecardScorecardRootCause'
-    protoExportAPIReview:
-      type: object
-      properties:
-        id:
-          type: string
-          format: int64
-        reviewer:
-          $ref: '#/components/schemas/protoReviewsUser'
-        reviewee:
-          $ref: '#/components/schemas/protoReviewsUser'
-        score:
-          type: number
-          format: double
-        ratings:
-          type: array
-          items:
-            type: object
-            $ref: '#/components/schemas/protoReviewsRating'
-        comment:
-          type: string
-        thread:
-          type: array
-          items:
-            type: object
-            $ref: '#/components/schemas/protoExportAPIComment'
-        tags:
-          type: array
-          items:
-            type: object
-            $ref: '#/components/schemas/protoExportAPICommentTag'
-        created:
-          type: string
-        updated:
-          type: string
-        received:
-          type: boolean
-        reviewTime:
-          type: string
-          format: int64
-        scorecard:
-          $ref: '#/components/schemas/protoScorecard'
-        createdISO:
-          type: string
-        updatedISO:
-          type: string
-        pauseTime:
-          type: string
-          format: int64
-        timeTrackingPeriods:
-          type: array
-          items:
-            type: object
-            $ref: '#/components/schemas/protoTimeTrackingPeriod'
-    protoExportAPIDisputeComment:
-      type: object
-      properties:
-        comment:
-          type: string
-        commentTags:
-          type: array
-          items:
-            type: object
-            $ref: '#/components/schemas/protoExportAPITagRequest'
-        owner:
-          $ref: '#/components/schemas/protoUserData'
-        created:
-          type: string
-          format: date-time
-        updated:
-          type: string
-          format: date-time
-        thread:
-          type: array
-          items:
-            type: object
-            $ref: '#/components/schemas/protoExportAPIDisputeComment'
-        Id:
-          type: string
-          format: int64
-    protoAccountWorkspacesResponse:
-      type: object
-      properties:
-        workspaces:
-          type: array
-          items:
-            type: object
-            $ref: '#/components/schemas/protoWorkspaceIdName'
-    AdvancedScorecardScorecardRatingCategoryCondition:
-      type: object
-      properties:
-        condition:
-          type: string
-        type:
-          type: string
-        values:
-          type: array
-          items:
-            type: string
-    protoExportAPICalibrationSession:
-      type: object
-      properties:
-        id:
+        externalId:
           type: string
         createdBy:
           type: string
           format: int64
         createdAt:
           type: string
-        title:
-          type: string
-        dueAt:
-          type: string
-        updatedAt:
-          type: string
-        conversations:
+        reviews:
           type: array
           items:
             type: object
-            $ref: '#/components/schemas/protoExportAPICalibrationConversation'
-    protoConversationSearchData:
-      type: object
-      properties:
-        externalId:
-          type: string
-        externalLink:
-          type: string
-    protoConversationSearchResponse:
-      type: object
-      properties:
-        conversations:
-          type: array
-          items:
-            type: object
-            $ref: '#/components/schemas/protoConversationSearchData'
+            $ref: '#/components/schemas/protoExportAPICalibrationReview'
     googlerpcStatus:
       type: object
       properties:
@@ -1517,202 +1906,6 @@ components:
           items:
             type: object
             $ref: '#/components/schemas/protobufAny'
-    AdvancedScorecardScorecardRatingCategory:
-      type: object
-      properties:
-        name:
-          type: string
-        description:
-          type: string
-        type:
-          type: string
-        ratingCategoryId:
-          type: string
-          format: int64
-        scale:
-          type: string
-        weight:
-          type: integer
-          format: int32
-        critical:
-          type: boolean
-        reviewCritical:
-          type: boolean
-        groupCritical:
-          type: boolean
-        position:
-          type: integer
-          format: int32
-        skippable:
-          type: boolean
-        conditions:
-          type: array
-          items:
-            type: object
-            $ref: '#/components/schemas/AdvancedScorecardScorecardRatingCategoryCondition'
-        rootCauses:
-          $ref: '#/components/schemas/AdvancedScorecardRootCauses'
-        autoQaCategory:
-          type: string
-        autoQaCustomCategoryTemplateId:
-          type: string
-        status:
-          type: string
-        autoQaApplicabilities:
-          type: array
-          items:
-            type: string
-        autoQaPromptCategoryTemplateId:
-          type: string
-        ratings:
-          type: array
-          items:
-            type: object
-            $ref: '#/components/schemas/AdvancedScorecardScorecardRatingCategoryRating'
-        promptAnomalies:
-          $ref: '#/components/schemas/protoPromptAnomalies'
-    AdvancedScorecardWorkspaceScorecard:
-      type: object
-      properties:
-        id:
-          type: string
-          format: int64
-        name:
-          type: string
-        categories:
-          type: array
-          items:
-            type: object
-            $ref: '#/components/schemas/AdvancedScorecardScorecardRatingCategory'
-        groups:
-          type: array
-          items:
-            type: object
-            $ref: '#/components/schemas/AdvancedScorecardScorecardRatingCategoryGroup'
-        createdAt:
-          type: string
-          format: date-time
-        updatedAt:
-          type: string
-          format: date-time
-    protoPagination:
-      type: object
-      properties:
-        page:
-          type: integer
-          format: int32
-        pageSize:
-          type: integer
-          format: int32
-        total:
-          type: integer
-          format: int32
-    protoPromptAnomalies:
-      type: object
-      properties:
-        highNaRate:
-          type: boolean
-    protoExportAPICalibrationReview:
-      type: object
-      properties:
-        id:
-          type: string
-        reviewer:
-          $ref: '#/components/schemas/protoReviewsUser'
-        reviewee:
-          $ref: '#/components/schemas/protoReviewsUser'
-        score:
-          type: number
-          format: double
-        ratings:
-          type: array
-          items:
-            type: object
-            $ref: '#/components/schemas/protoReviewsRating'
-        comment:
-          type: string
-        thread:
-          type: array
-          items:
-            type: object
-            $ref: '#/components/schemas/protoExportAPICalibrationComment'
-        tags:
-          type: array
-          items:
-            type: object
-            $ref: '#/components/schemas/protoExportAPICommentTag'
-        createdAt:
-          type: string
-        updatedAt:
-          type: string
-        received:
-          type: boolean
-        scorecard:
-          $ref: '#/components/schemas/protoScorecard'
-        createdISO:
-          type: string
-        updatedISO:
-          type: string
-    AdvancedScorecardScorecardRootCause:
-      type: object
-      properties:
-        id:
-          type: string
-          format: int64
-        name:
-          type: string
-    protoQuizFieldWithStatistics:
-      type: object
-      properties:
-        id:
-          type: string
-          format: int64
-        text:
-          type: string
-        images:
-          type: array
-          items:
-            type: string
-        properties:
-          type: array
-          items:
-            type: object
-            $ref: '#/components/schemas/protoQuizFieldProperty'
-        type:
-          $ref: '#/components/schemas/protoQuizFieldType'
-        position:
-          type: string
-          format: int64
-        options:
-          type: array
-          items:
-            type: object
-            $ref: '#/components/schemas/protoQuizFieldOptionWithStatistics'
-    protoExportAPICalibrationComment:
-      type: object
-      properties:
-        id:
-          type: string
-        owner:
-          $ref: '#/components/schemas/protoReviewsUser'
-        comment:
-          type: string
-        createdAt:
-          type: string
-        updatedAt:
-          type: string
-        createdISO:
-          type: string
-        updatedISO:
-          type: string
-    protoExportAPIUsersResponse:
-      type: object
-      properties:
-        users:
-          type: array
-          items:
-            type: object
-            $ref: '#/components/schemas/protoExportAPIUser'
     AdvancedScorecardScorecardRatingCategoryGroup:
       type: object
       properties:
@@ -1729,222 +1922,29 @@ components:
           items:
             type: object
             $ref: '#/components/schemas/AdvancedScorecardScorecardRatingCategory'
-    protoExportAPIComment:
+    protoStatus:
+      type: string
+      enum:
+      - DRAFT
+      - PUBLISHED
+      - DELETED
+      - ARCHIVED
+      default: DRAFT
+    protoConversationSearchRequest:
       type: object
       properties:
-        id:
+        account:
           type: string
           format: int64
-        owner:
-          $ref: '#/components/schemas/protoReviewsUser'
-        comment:
+        endUserEmail:
           type: string
-        created:
-          type: string
-        updated:
-          type: string
-        thread:
-          type: array
-          items:
-            type: object
-            $ref: '#/components/schemas/protoExportAPIComment'
-        tags:
-          type: array
-          items:
-            type: object
-            $ref: '#/components/schemas/protoExportAPICommentTag'
-        createdISO:
-          type: string
-        updatedISO:
-          type: string
-    protoQuizResponseField:
+    AdvancedScorecardScorecardRatingCategoryRating:
       type: object
       properties:
-        id:
+        rating:
           type: string
           format: int64
-        text:
-          type: string
-        images:
-          type: array
-          items:
-            type: string
-        properties:
-          type: array
-          items:
-            type: object
-            $ref: '#/components/schemas/protoQuizFieldProperty'
-        type:
-          $ref: '#/components/schemas/protoQuizFieldType'
-        position:
-          type: string
-          format: int64
-        options:
-          type: array
-          items:
-            type: object
-            $ref: '#/components/schemas/protoQuizResponseOption'
-        answeredCorrectly:
-          type: boolean
-    protoExportAPICalibrationConversation:
-      type: object
-      properties:
-        externalId:
-          type: string
-        createdBy:
-          type: string
-          format: int64
-        createdAt:
-          type: string
-        reviews:
-          type: array
-          items:
-            type: object
-            $ref: '#/components/schemas/protoExportAPICalibrationReview'
-    protoQuizResponseItem:
-      type: object
-      properties:
-        responseId:
-          type: string
-          format: int64
-        userId:
-          type: string
-          format: int64
-        userName:
-          type: string
-        correctAnswerPercentage:
-          type: string
-          format: int64
-    protoTicketCSAT:
-      type: object
-      properties:
-        externalTicketId:
-          type: string
-        conversationUrl:
-          type: string
-        ticketCreatedAt:
-          type: string
-          format: date-time
-        csatCreatedAt:
-          type: string
-          format: date-time
-        csatAnsweredAt:
-          type: string
-          format: date-time
-        agentName:
-          type: string
-        agentEmail:
-          type: string
-        customerName:
-          type: string
-        customerEmail:
-          type: string
-        csatScore:
-          type: string
-          format: int64
-        csatRawScore:
-          type: string
-        csatComment:
-          type: string
-        csatReason:
-          type: string
-        conversationChannel:
-          type: string
-        conversationSource:
-          type: string
-        commentSize:
-          type: string
-        commentWordCount:
-          type: string
-        language:
-          type: string
-        csatDrivers:
-          type: array
-          items:
-            type: string
-        helpdeskTags:
-          type: array
-          items:
-            type: string
-    protoExternalField:
-      type: object
-      properties:
-        externalId:
-          type: string
-        name:
-          type: string
-        value:
-          type: string
-    protoQuizResponseOption:
-      type: object
-      properties:
-        id:
-          type: string
-          format: int64
-        label:
-          type: string
-        correct:
-          type: boolean
-        position:
-          type: string
-          format: int64
-        selected:
-          type: boolean
-    protoAutoQARatingsExportResponse:
-      type: object
-      properties:
-        rows:
-          type: array
-          items:
-            type: object
-            $ref: '#/components/schemas/protoAutoQARatingRow'
-        pagination:
-          $ref: '#/components/schemas/protoPagination'
-        nextCursor:
-          type: string
-    protoExportAPIReviewsResponse:
-      type: object
-      properties:
-        conversations:
-          type: array
-          items:
-            type: object
-            $ref: '#/components/schemas/protoExportAPIConversation'
-        pagination:
-          $ref: '#/components/schemas/protoPagination'
-    protoReviewsUser:
-      type: object
-      properties:
-        email:
-          type: string
-        name:
-          type: string
-        avatar:
-          type: string
-        groups:
-          type: array
-          items:
-            type: object
-            $ref: '#/components/schemas/protoReviewsGroup'
-    protoAutoQAReviewsExportResponse:
-      type: object
-      properties:
-        rows:
-          type: array
-          items:
-            type: object
-            $ref: '#/components/schemas/protoAutoQAReviewRow'
-        pagination:
-          $ref: '#/components/schemas/protoPagination'
-        nextCursor:
-          type: string
-    protoScorecard:
-      type: object
-      properties:
-        id:
-          type: string
-          format: int64
-        name:
+        description:
           type: string
   securitySchemes:
     ApiKeyAuth:

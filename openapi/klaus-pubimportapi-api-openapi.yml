@@ -132,20 +132,6 @@ paths:
       x-summary-source: derived
 components:
   schemas:
-    protoPubTicketImportRequest:
-      type: object
-      properties:
-        data:
-          type: array
-          items:
-            type: object
-            $ref: '#/components/schemas/protoPubTicketImport'
-    protobufAny:
-      type: object
-      properties:
-        '@type':
-          type: string
-      additionalProperties: {}
     rpcStatus:
       type: object
       properties:
@@ -159,69 +145,6 @@ components:
           items:
             type: object
             $ref: '#/components/schemas/protobufAny'
-    protoPubTicketImport:
-      type: object
-      properties:
-        id:
-          type: string
-        assigneeEmail:
-          type: string
-        assigneeName:
-          type: string
-        description:
-          type: string
-        subject:
-          type: string
-        created:
-          type: string
-        updated:
-          type: string
-        status:
-          type: string
-        customerName:
-          type: string
-        customerEmail:
-          type: string
-        comments:
-          type: array
-          items:
-            type: object
-            $ref: '#/components/schemas/protoPubCommentImport'
-        ticketFields:
-          type: array
-          items:
-            type: object
-            $ref: '#/components/schemas/protoPubTicketField'
-        channel:
-          type: string
-        type:
-          type: string
-        satisfactionScore:
-          type: string
-        satisfactionComment:
-          type: string
-        closed:
-          type: string
-        url:
-          type: string
-        tags:
-          type: array
-          items:
-            type: string
-    protoPubTicketField:
-      type: object
-      properties:
-        id:
-          type: string
-        label:
-          type: string
-        updated:
-          type: string
-        values:
-          type: array
-          items:
-            type: object
-            $ref: '#/components/schemas/protoPubTicketFieldValue'
     protoPubUserImportRequest:
       type: object
       properties:
@@ -230,6 +153,28 @@ components:
           items:
             type: object
             $ref: '#/components/schemas/protoPubUserImport'
+    protoPubUserImport:
+      type: object
+      properties:
+        userEmail:
+          type: string
+        userName:
+          type: string
+    protoPubTicketFieldValue:
+      type: object
+      properties:
+        label:
+          type: string
+        value:
+          type: string
+    protoPubTicketImportRequest:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            type: object
+            $ref: '#/components/schemas/protoPubTicketImport'
     protoPubImportedComment:
       type: object
       properties:
@@ -261,20 +206,26 @@ components:
         callDuration:
           type: string
           format: int64
-    protoPubUserImport:
+    protoPubTicketField:
       type: object
       properties:
-        userEmail:
+        id:
           type: string
-        userName:
-          type: string
-    protoPubTicketFieldValue:
-      type: object
-      properties:
         label:
           type: string
-        value:
+        updated:
           type: string
+        values:
+          type: array
+          items:
+            type: object
+            $ref: '#/components/schemas/protoPubTicketFieldValue'
+    protobufAny:
+      type: object
+      properties:
+        '@type':
+          type: string
+      additionalProperties: {}
     protoPubCommentImport:
       type: object
       properties:
@@ -345,6 +296,55 @@ components:
           items:
             type: object
             $ref: '#/components/schemas/protoPubTicketField'
+        url:
+          type: string
+        tags:
+          type: array
+          items:
+            type: string
+    protoPubTicketImport:
+      type: object
+      properties:
+        id:
+          type: string
+        assigneeEmail:
+          type: string
+        assigneeName:
+          type: string
+        description:
+          type: string
+        subject:
+          type: string
+        created:
+          type: string
+        updated:
+          type: string
+        status:
+          type: string
+        customerName:
+          type: string
+        customerEmail:
+          type: string
+        comments:
+          type: array
+          items:
+            type: object
+            $ref: '#/components/schemas/protoPubCommentImport'
+        ticketFields:
+          type: array
+          items:
+            type: object
+            $ref: '#/components/schemas/protoPubTicketField'
+        channel:
+          type: string
+        type:
+          type: string
+        satisfactionScore:
+          type: string
+        satisfactionComment:
+          type: string
+        closed:
+          type: string
         url:
           type: string
         tags:
