@@ -132,41 +132,12 @@ paths:
       x-summary-source: derived
 components:
   schemas:
-    rpcStatus:
+    protobufAny:
       type: object
       properties:
-        code:
-          type: integer
-          format: int32
-        message:
+        '@type':
           type: string
-        details:
-          type: array
-          items:
-            type: object
-            $ref: '#/components/schemas/protobufAny'
-    protoPubUserImportRequest:
-      type: object
-      properties:
-        data:
-          type: array
-          items:
-            type: object
-            $ref: '#/components/schemas/protoPubUserImport'
-    protoPubUserImport:
-      type: object
-      properties:
-        userEmail:
-          type: string
-        userName:
-          type: string
-    protoPubTicketFieldValue:
-      type: object
-      properties:
-        label:
-          type: string
-        value:
-          type: string
+      additionalProperties: {}
     protoPubTicketImportRequest:
       type: object
       properties:
@@ -175,133 +146,6 @@ components:
           items:
             type: object
             $ref: '#/components/schemas/protoPubTicketImport'
-    protoPubImportedComment:
-      type: object
-      properties:
-        externalId:
-          type: string
-        internalId:
-          type: string
-          format: int64
-        authorName:
-          type: string
-        authorEmail:
-          type: string
-        public:
-          type: boolean
-        comment:
-          type: string
-        created:
-          type: string
-        updated:
-          type: string
-        imported:
-          type: string
-        recordingUrl:
-          type: string
-        attachmentUrl:
-          type: string
-        attachmentName:
-          type: string
-        callDuration:
-          type: string
-          format: int64
-    protoPubTicketField:
-      type: object
-      properties:
-        id:
-          type: string
-        label:
-          type: string
-        updated:
-          type: string
-        values:
-          type: array
-          items:
-            type: object
-            $ref: '#/components/schemas/protoPubTicketFieldValue'
-    protobufAny:
-      type: object
-      properties:
-        '@type':
-          type: string
-      additionalProperties: {}
-    protoPubCommentImport:
-      type: object
-      properties:
-        id:
-          type: string
-        authorName:
-          type: string
-        authorEmail:
-          type: string
-        authorIsNotClient:
-          type: boolean
-        public:
-          type: boolean
-        comment:
-          type: string
-        created:
-          type: string
-        updated:
-          type: string
-        recordingUrl:
-          type: string
-        attachmentUrl:
-          type: string
-        attachmentName:
-          type: string
-        callDuration:
-          type: string
-          format: int64
-        callDirection:
-          type: string
-        isBucketKey:
-          type: boolean
-    protoPubImportedTicket:
-      type: object
-      properties:
-        externalId:
-          type: string
-        internalId:
-          type: string
-          format: int64
-        assigneeEmail:
-          type: string
-        assigneeName:
-          type: string
-        description:
-          type: string
-        subject:
-          type: string
-        created:
-          type: string
-        updated:
-          type: string
-        imported:
-          type: string
-        status:
-          type: string
-        customerName:
-          type: string
-        customerEmail:
-          type: string
-        comments:
-          type: array
-          items:
-            type: object
-            $ref: '#/components/schemas/protoPubImportedComment'
-        ticketFields:
-          type: array
-          items:
-            type: object
-            $ref: '#/components/schemas/protoPubTicketField'
-        url:
-          type: string
-        tags:
-          type: array
-          items:
-            type: string
     protoPubTicketImport:
       type: object
       properties:
@@ -351,6 +195,162 @@ components:
           type: array
           items:
             type: string
+    protoPubTicketField:
+      type: object
+      properties:
+        id:
+          type: string
+        label:
+          type: string
+        updated:
+          type: string
+        values:
+          type: array
+          items:
+            type: object
+            $ref: '#/components/schemas/protoPubTicketFieldValue'
+    protoPubTicketFieldValue:
+      type: object
+      properties:
+        label:
+          type: string
+        value:
+          type: string
+    protoPubImportedComment:
+      type: object
+      properties:
+        externalId:
+          type: string
+        internalId:
+          type: string
+          format: int64
+        authorName:
+          type: string
+        authorEmail:
+          type: string
+        public:
+          type: boolean
+        comment:
+          type: string
+        created:
+          type: string
+        updated:
+          type: string
+        imported:
+          type: string
+        recordingUrl:
+          type: string
+        attachmentUrl:
+          type: string
+        attachmentName:
+          type: string
+        callDuration:
+          type: string
+          format: int64
+    rpcStatus:
+      type: object
+      properties:
+        code:
+          type: integer
+          format: int32
+        message:
+          type: string
+        details:
+          type: array
+          items:
+            type: object
+            $ref: '#/components/schemas/protobufAny'
+    protoPubUserImportRequest:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            type: object
+            $ref: '#/components/schemas/protoPubUserImport'
+    protoPubImportedTicket:
+      type: object
+      properties:
+        externalId:
+          type: string
+        internalId:
+          type: string
+          format: int64
+        assigneeEmail:
+          type: string
+        assigneeName:
+          type: string
+        description:
+          type: string
+        subject:
+          type: string
+        created:
+          type: string
+        updated:
+          type: string
+        imported:
+          type: string
+        status:
+          type: string
+        customerName:
+          type: string
+        customerEmail:
+          type: string
+        comments:
+          type: array
+          items:
+            type: object
+            $ref: '#/components/schemas/protoPubImportedComment'
+        ticketFields:
+          type: array
+          items:
+            type: object
+            $ref: '#/components/schemas/protoPubTicketField'
+        url:
+          type: string
+        tags:
+          type: array
+          items:
+            type: string
+    protoPubUserImport:
+      type: object
+      properties:
+        userEmail:
+          type: string
+        userName:
+          type: string
+    protoPubCommentImport:
+      type: object
+      properties:
+        id:
+          type: string
+        authorName:
+          type: string
+        authorEmail:
+          type: string
+        authorIsNotClient:
+          type: boolean
+        public:
+          type: boolean
+        comment:
+          type: string
+        created:
+          type: string
+        updated:
+          type: string
+        recordingUrl:
+          type: string
+        attachmentUrl:
+          type: string
+        attachmentName:
+          type: string
+        callDuration:
+          type: string
+          format: int64
+        callDirection:
+          type: string
+        isBucketKey:
+          type: boolean
   securitySchemes:
     ApiKeyAuth:
       type: apiKey
