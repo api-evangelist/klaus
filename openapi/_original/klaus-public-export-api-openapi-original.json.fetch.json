@@ -1,0 +1,12 @@
+{
+ "url": "https://pub.klausapp.com/public-export-api.swagger.json",
+ "requested_url": "https://pub.klausapp.com/public-export-api.swagger.json",
+ "status": 200,
+ "content_type": "application/json",
+ "bytes": 67602,
+ "sha256": "96755d50f205340fc94ef32791496a650e989f68bb9b402d4496b3254cc80740",
+ "fetched_at": "2026-10-04",
+ "fetched_by": "APIEvangelist-Harvest/1.0 (+https://apievangelist.com)",
+ "match": "equivalent",
+ "note": "Re-fetched from the provider by verify-openapi-sources.py; the provider's current document describes the same operations (Jaccard 1.0), but the bytes differ, so the archive is an earlier or reformatted copy."
+}

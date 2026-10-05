@@ -1,0 +1,12 @@
+{
+ "url": "https://pub.klausapp.com/public-import-api.swagger.json",
+ "requested_url": "https://pub.klausapp.com/public-import-api.swagger.json",
+ "status": 200,
+ "content_type": "application/json",
+ "bytes": 10931,
+ "sha256": "66c05c499f1213738ec7c6ab784c8f5b96bb0a17d2c602fe8b7de593f752cef2",
+ "fetched_at": "2026-10-04",
+ "fetched_by": "APIEvangelist-Harvest/1.0 (+https://apievangelist.com)",
+ "match": "byte-identical",
+ "note": "Re-fetched from the provider by verify-openapi-sources.py; the archived file is byte-identical to what the provider serves."
+}
