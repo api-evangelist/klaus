@@ -1,0 +1,199 @@
+# Pricing transcribed from the provider's own page — see provenance. Numbers are quoted, not derived.
+generated: '2026-10-07'
+method: searched
+source: https://www.zendesk.com/pricing/
+sources:
+- https://www.zendesk.com/pricing/
+provenance:
+  tool: all/0-working/economics/harvest_pricing.py
+  run: 20261007T104522
+  grounding: every price_text was found verbatim in the fetched page text
+audience: business-product
+pricing_basis: per-seat
+delivery:
+  delivery: managed
+  method: page
+  read: '2026-10-07'
+  managed_tier: Support Team
+published: true
+note: Zendesk pricing page (provider listed as klaus). Seat-based tiers with annual/monthly prices, add-ons,
+  and usage-based automated resolutions; Enterprise tier is sales-negotiated.
+plan_count: 11
+currency: USD
+plans:
+- name: Support Team
+  price_text: $19 agent/month paid yearly
+  price: 19
+  currency: USD
+  period: month
+  unit: agent
+  included_quota: Email and ticketing system, ticket routing, prebuilt analytics dashboards; 5 ARs per
+    agent/month
+  overage: Committed automated resolutions $1.50; Pay-as-you-go resolutions $2.00
+- name: Suite Team
+  price_text: $55 agent/month paid yearly
+  price: 55
+  currency: USD
+  period: month
+  unit: agent
+  included_quota: Support Team features plus AI Agents, omnichannel routing, messaging and live chat,
+    telephony; 5 ARs per agent/month
+  overage: Committed automated resolutions $1.50; Pay-as-you-go resolutions $2.00
+- name: Suite Professional
+  price_text: $115 agent/month paid yearly
+  price: 115
+  currency: USD
+  period: month
+  unit: agent
+  included_quota: Suite Team features plus Admin Copilot, App Builder, AI Writing Tools, skills-based
+    routing, IVR; 10 ARs per agent/month
+  overage: Committed automated resolutions $1.50; Pay-as-you-go resolutions $2.00
+- name: Suite Enterprise + Copilot
+  price_text: Talk to Sales
+  period: none
+  included_quota: Suite Professional features plus intelligent triage, auto assist, generative AI for
+    voice, approval workflows, sandbox, custom agent roles
+- name: Support Team (monthly subscription)
+  price_text: $25
+  price: 25
+  currency: USD
+  period: month
+  unit: per agent/month
+- name: Suite Team (monthly subscription)
+  price_text: $69
+  price: 69
+  currency: USD
+  period: month
+  unit: per agent/month
+- name: Suite Professional (monthly subscription)
+  price_text: $149
+  price: 149
+  currency: USD
+  period: month
+  unit: per agent/month
+- name: Copilot add-on
+  price_text: $50 agent/month paid yearly
+  price: 50
+  currency: USD
+  period: month
+  unit: agent
+- name: Workforce Engagement Bundle add-on
+  price_text: $50 agent/month paid yearly
+  price: 50
+  currency: USD
+  period: month
+  unit: agent
+- name: Contact Center add-on
+  price_text: $83 agent/month paid yearly
+  price: 83
+  currency: USD
+  period: month
+  unit: agent
+- name: Action credits
+  price_text: $200 per 100K actions/subscription term
+  price: 200
+  currency: USD
+  period: per-use
+  unit: 100K actions
+rate_limit_statements:
+- Organizations requiring additional API volumes can increase overall API rate limit to 2500 requests
+  per minute.
+- You can send up to 700 events per minute.
+- Up to 40K actions/month Up to 480K actions/year
+- Allowance is capped at 500 uses per instance per month, even if you have more than 100 agents.
+x-canonical:
+  generated: '2026-10-08'
+  vocabulary: all/0-working/economics/plans-canonical.yml
+  models:
+  - seat
+  - subscription
+  units:
+  - seat
+  plans:
+  - name: Support Team
+    access: other
+    model: seat
+    model_how: derived
+    units:
+    - seat
+    periods:
+    - month
+  - name: Suite Team
+    access: other
+    model: seat
+    model_how: derived
+    units:
+    - seat
+    periods:
+    - month
+  - name: Suite Professional
+    access: other
+    model: seat
+    model_how: derived
+    units:
+    - seat
+    periods:
+    - month
+  - name: Suite Enterprise + Copilot
+    access: other
+    model: unstated
+    model_how: derived
+    units: []
+    periods:
+    - none
+  - name: Support Team (monthly subscription)
+    access: other
+    model: subscription
+    model_how: derived
+    units:
+    - other
+    periods:
+    - month
+  - name: Suite Team (monthly subscription)
+    access: other
+    model: subscription
+    model_how: derived
+    units:
+    - other
+    periods:
+    - month
+  - name: Suite Professional (monthly subscription)
+    access: other
+    model: subscription
+    model_how: derived
+    units:
+    - other
+    periods:
+    - month
+  - name: Copilot add-on
+    access: other
+    model: seat
+    model_how: derived
+    units:
+    - seat
+    periods:
+    - month
+  - name: Workforce Engagement Bundle add-on
+    access: other
+    model: seat
+    model_how: derived
+    units:
+    - seat
+    periods:
+    - month
+  - name: Contact Center add-on
+    access: other
+    model: seat
+    model_how: derived
+    units:
+    - seat
+    periods:
+    - month
+  - name: Action credits
+    access: other
+    model: subscription
+    model_how: derived
+    units:
+    - other
+    periods:
+    - other
