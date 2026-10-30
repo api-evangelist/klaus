@@ -64,41 +64,135 @@
 > Full detail: **[Where this data comes from](https://apievangelist.com/about/where-our-data-comes-from)**
 <!-- API-EVANGELIST-PROVENANCE:END -->
 
-Klaus is an AI-powered conversation review and quality assurance (QA) platform for customer
-support teams, founded in Tallinn, Estonia in 2019 and acquired by Zendesk in 2023, where it
-now ships as **Zendesk QA**. The product samples support conversations from connected help
-desks, scores them against configurable scorecards and rating categories, runs AutoQA checks,
-tracks disputes and calibration sessions, measures CSAT, and delivers coaching, quizzes and
-agent-performance dashboards.
+Klaus is an AI-powered conversation review and quality assurance (QA) platform for customer support teams, founded in Tallinn, Estonia in 2019 and acquired by Zendesk in 2023, where it now ships as Zendesk QA. The product samples support conversations from connected help desks, scores them against configurable scorecards and rating categories, runs AutoQA checks, tracks disputes and calibration sessions, measures CSAT, and delivers coaching, quizzes and agent-performance dashboards. Klaus exposes two public REST APIs — a Public Import API for pushing conversations and users into QA from a custom help desk, and a Public Export API for pulling reviews, AutoQA ratings, CSAT, disputes, calibration sessions, scorecards, quizzes and users back out for external analysis. Both are documented as Swagger 2.0 specifications at pub.klausapp.com and authenticated with a bearer API token issued from a Zendesk QA custom integration.
 
-- Website: https://www.klausapp.com/ (redirects to https://www.zendesk.com/service/quality-assurance/)
-- API reference: https://pub.klausapp.com/
-- Product guide: https://support.zendesk.com/hc/en-us/sections/6999625340058-Using-Zendesk-QA
+**Areas:** Company · Quality Assurance · Customer Service · Customer Experience · Conversation Analytics · Contact Center · Coaching · Artificial Intelligence · Software-as-a-Service
 
-## APIs
+## Klaus on APIs.io
 
-| API | What it does | Spec |
-|---|---|---|
-| Klaus Public Export API | Export reviews, AutoQA ratings and reviews, CSAT, disputes, calibration sessions, workspace scorecards, quizzes and users | `openapi/klaus-public-export-api-openapi-original.json` (Swagger 2.0, 18 operations) |
-| Klaus Public Import API | Bulk-import conversations with comments and ticket fields, fetch or delete an imported ticket, bulk-import users | `openapi/klaus-public-import-api-openapi-original.json` (Swagger 2.0, 4 operations) |
+Everything profiled for Klaus is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/klaus/](https://apis.io/providers/klaus/)** — or go straight to one of the APIs or properties below.
 
-Both are authenticated with a bearer API token issued from a Zendesk QA custom integration
-(`Authorization: Bearer <api_token>`) — no OAuth, and therefore no scopes.
+### APIs (2)
 
-## Artifacts
+- [Klaus PubImportApi API](https://apis.io/apis/klaus/klaus-pubimportapi-api/) — The PubImportApi API from Klaus — 3 operation(s) for pubimportapi.
+- [Klaus PublicExportApi API](https://apis.io/apis/klaus/klaus-publicexportapi-api/) — The PublicExportApi API from Klaus — 18 operation(s) for publicexportapi.
 
-- `openapi/` — both published Swagger 2.0 specifications, harvested verbatim from pub.klausapp.com
-- `overlays/` — API Evangelist Overlay 1.0.0 enhancements over each spec
-- `authentication/` — the auth profile and where each credential comes from
-- `conventions/` — pagination, idempotency, error envelope, versioning, filtering
-- `errors/` — the grpc-gateway `google.rpc.Status` envelope and the documented gaps
-- `rate-limits/` — 1,500 req/min per IP; 500 comments/ticket; 10,000 tickets/import
-- `lifecycle/` — versioning, deprecation announcements, data retention, status page
-- `changelog/` — recent dated Zendesk QA announcements
-- `conformance/` — standards conformance plus the Zendesk compliance program
-- `data-model/` — the entity-relationship graph derived from the specs
-- `mcp/` — a candidate MCP tool surface derived from all 22 operations (no official server exists)
-- `llms/` — a generated `llms.txt` (none is published upstream)
-- `security/` — domain-security probe, vulnerability disclosure, trust center
-- `skills/` — five packaged Agent Skills for the marquee flows
-- `well-known/` — the probed `/.well-known/` surface (nothing published)
+### Published properties
+
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
+
+#### MCP servers (1)
+
+Model Context Protocol servers that expose the API to agents.
+
+- [klaus](https://apis.io/servers/klaus/klaus/)
+
+#### Collections (2)
+
+Postman and Open Collection request collections.
+
+- [Public Export PubImportApi API](https://apis.io/collections/klaus/open-klaus-pubimportapi-api/)
+- [Public Export PubImportApi PublicExportApi API](https://apis.io/collections/klaus/open-klaus-publicexportapi-api/)
+
+#### Overlays (2)
+
+OpenAPI overlays, including conversational phrasing for each operation.
+
+- [Klaus Public Export Api Overlay](https://apis.io/overlays/klaus/klaus-public-export-api-overlay/)
+- [Klaus Public Import Api Overlay](https://apis.io/overlays/klaus/klaus-public-import-api-overlay/)
+
+#### Security (4)
+
+Authentication, trust centre, and vulnerability disclosure.
+
+- [Klaus Authentication](https://apis.io/security/klaus/klaus-authentication/)
+- [Klaus Domain Security](https://apis.io/security/klaus/klaus-domain-security/)
+- [Klaus Trust Center](https://apis.io/security/klaus/klaus-trust-center/)
+- [Klaus Vulnerability Disclosure](https://apis.io/security/klaus/klaus-vulnerability-disclosure/)
+
+#### Plans and pricing (1)
+
+Published plans, tiers and prices.
+
+- [Klaus Plans Pricing](https://apis.io/plans/klaus/klaus-plans-pricing/)
+
+#### Rate limits (1)
+
+Published request limits.
+
+- [Klaus Rate Limits](https://apis.io/rate-limits/klaus/klaus-rate-limits/)
+
+## Where to find this API
+
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
+
+- [Website](https://www.klausapp.com/)
+- [Documentation](https://support.zendesk.com/hc/en-us/sections/6999625340058-Using-Zendesk-QA)
+- [Getting started](https://support.zendesk.com/hc/en-us/articles/10093676975898-Getting-started-with-Zendesk-QA-Admin-guide)
+- [API reference](https://pub.klausapp.com/)
+- [Pricing](https://www.zendesk.com/pricing/)
+- [Sign up](https://www.zendesk.com/register/)
+- [Support](https://support.zendesk.com/hc/en-us/articles/4408843597850-Contacting-Zendesk-customer-support)
+- [Blog](https://www.zendesk.com/blog/)
+- [Security](https://www.zendesk.com/company/policies-and-guidelines/responsible-disclosure-policy/)
+- [Compliance](https://www.zendesk.com/trust-center/)
+- [Trust centre](https://www.zendesk.com/trust-center/)
+- [Terms of service](https://www.zendesk.com/company/agreements-and-terms/zendesk-customer-agreement/)
+- [Privacy policy](https://www.zendesk.com/company/agreements-and-terms/privacy-notice/)
+- [GitHub](https://github.com/klausapp)
+- [Status](https://status.zendesk.com/)
+
+## API Evangelist rating
+
+**Kin Score 60.3** — strong · rubric 0.25.0 · scored 2026-10-23
+
+| Facet | Score |
+|---|---|
+| Discoverability | 73.2 |
+| Contract quality | 41.6 |
+| Contract governance | 4.5 |
+| Operational transparency | 76.3 |
+| Developer ergonomics | 58.9 |
+| Access clarity | 92.1 |
+
+**Agent readiness 25.3** — agent-aware
+
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | yes |
+| Agentic Access | — |
+| Reversibility Documented | — |
+| MCP Server | — |
+| Auth Clarity | bearer (partial credit) |
+| Idempotency | documented (partial credit) |
+| Error Semantics | derived (partial credit) |
+| OpenAPI Examples | — |
+| Rate Limit Signal | documented (partial credit) |
+| Event Surface Described | — |
+| Agent Skills | derived (partial credit) |
+| Well Known Catalog | — |
+| Consent Identity | — |
+| Agent Card | — |
+| Dry Run Mode | — |
+| Delegated Identity | — |
+| Protected Resource Metadata | — |
+| Dynamic Client Registration | — |
+| Agentic Commerce | — |
+| Pagination Ratio | partial |
+| Operation Distinctiveness | distinct |
+
+**Regulatory alignment 32.7** — Horizontal (data, software, accessibility, platform)
+
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/klaus/](https://apis.io/providers/klaus/).
+
+## How this profile is made
+
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
+
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for Klaus: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
+
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/klaus/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
